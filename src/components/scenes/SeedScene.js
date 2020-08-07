@@ -1,7 +1,16 @@
 import * as Dat from 'dat.gui';
 import { Scene, Color } from 'three';
-import { Flower, Land } from 'objects';
+import { Flower, Land, Octopus, Head } from 'objects';
 import { BasicLights } from 'lights';
+import * as THREE from "three";
+// import { ResourceTracker } from "tracker";
+import POSX from "./textures/Earth/posx.jpg";
+import NEGX from "./textures/Earth/negx.jpg";
+import POSY from "./textures/Earth/posy.jpg";
+import NEGY from "./textures/Earth/negy.jpg";
+import POSZ from "./textures/Earth/posz.jpg";
+import NEGZ from "./textures/Earth/negz.jpg";
+import WHITE from "./textures/White/white.png";
 
 class SeedScene extends Scene {
     constructor() {
@@ -13,19 +22,35 @@ class SeedScene extends Scene {
             gui: new Dat.GUI(), // Create GUI for scene
             rotationSpeed: 1,
             updateList: [],
+            bob: true,
         };
 
         // Set background to a nice color
-        this.background = new Color(0x7ec0ee);
+        this.background = new Color(0xffcccc);
+
+        // this.background = new THREE.CubeTextureLoader()
+		// 	.load( [
+        //         POSX, NEGX,
+        //         POSY, NEGY,
+        //         POSZ, NEGZ
+        // ] );
 
         // Add meshes to scene
-        const land = new Land();
-        const flower = new Flower(this);
+        // const land = new Land();
+        const octopus = new Octopus(this);
+        this.octopus = octopus;
         const lights = new BasicLights();
-        this.add(land, flower, lights);
+        this.add(octopus, lights);
+
+        const head = new Head(this);
+        this.add(head);
+        this.head = head;
+
+        // this.addFlower();
 
         // Populate GUI
-        this.state.gui.add(this.state, 'rotationSpeed', -5, 5);
+        this.state.gui.add(this.state, 'bob');
+        // this.state.gui.add(this.state, 'rotationSpeed', -5, 5);
     }
 
     addToUpdateList(object) {
@@ -34,12 +59,36 @@ class SeedScene extends Scene {
 
     update(timeStamp) {
         const { rotationSpeed, updateList } = this.state;
-        this.rotation.y = (rotationSpeed * timeStamp) / 10000;
+        // spins objects
+        // this.rotation.y = (rotationSpeed * timeStamp) / 10000;
+
+        if (this.state.bob) {
+            for (let obj of updateList) {
+                obj.state.bob = true;
+            }
+            // Bob back antd forth
+            // this.rotation.z = 0.05 * Math.sin(timeStamp / 300);
+        }
+        else {
+            for (let obj of updateList) {
+                obj.state.bob = false;
+            }
+        }
 
         // Call update for each object in the updateList
         for (const obj of updateList) {
             obj.update(timeStamp);
         }
+    }
+
+    addFlower() {
+        const flower = new Flower(this);
+        this.add(flower);
+        this.flower = flower;
+    }
+
+    removeFlower() {
+        this.flower.dispose();
     }
 }
 

@@ -2,6 +2,7 @@ import { Group } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
 import MODEL from './flower.gltf';
+import { ResourceTracker } from "../../tracker";
 
 class Flower extends Group {
     constructor(parent) {
@@ -16,6 +17,9 @@ class Flower extends Group {
             twirl: 0,
         };
 
+        this.tracker = new ResourceTracker();
+        const track = this.tracker.track.bind(this.tracker);
+
         // Load object
         const loader = new GLTFLoader();
 
@@ -24,12 +28,15 @@ class Flower extends Group {
             this.add(gltf.scene);
         });
 
+        this.position.y += 2.7;
+        this.scale.multiplyScalar(0.5);
+
         // Add self to parent's update list
         parent.addToUpdateList(this);
 
         // Populate GUI
-        this.state.gui.add(this.state, 'bob');
-        this.state.gui.add(this.state, 'spin');
+        // this.state.gui.add(this.state, 'bob');
+        // this.state.gui.add(this.state, 'spin');
     }
 
     spin() {
@@ -53,6 +60,12 @@ class Flower extends Group {
         jumpUp.start();
     }
 
+    dispose() {
+        console.log("disposed");
+        this.parent.remove(this);
+        this.tracker.dispose();
+    }
+
     update(timeStamp) {
         if (this.state.bob) {
             // Bob back and forth
@@ -67,6 +80,7 @@ class Flower extends Group {
         // Advance tween animations, if any exist
         TWEEN.update();
     }
+
 }
 
 export default Flower;
