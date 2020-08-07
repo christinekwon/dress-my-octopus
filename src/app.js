@@ -19,13 +19,16 @@ const BASE = "base";
 const ACC = "acc";
 
 const BACKGROUND = new Color("rgb(255, 243, 175)");
-const TYPE_ON = "rgba(255, 217, 0, 0.8)";
-const TYPE_OFF = "transparent";
-const TYPE_ON_HOVER = "rgba(255, 217, 0, 1.0)";
-const TYPE_OFF_HOVER = "rgba(255, 232, 103, 0.7)";
+const ITEM_ON = "rgba(255, 217, 0, 0.8)";
+const ITEM_OFF = "transparent";
+const ITEM_ON_HOVER = "rgba(255, 217, 0, 1.0)";
+const ITEM_OFF_HOVER = "rgba(255, 232, 103, 0.7)";
 
-var typeMap = {
-    "head": "",
+var itemMap = {
+    "HEART": 0,
+    "BOW": 0,
+    "CAP": 0,
+    "HAT": 0,
 }
 
 // Initialize core ThreeJS components
@@ -110,27 +113,31 @@ for (let i = 0; i < choices.length; i++) {
     choices[i].addEventListener("mouseout", lighten);
 }
 
+document.getElementById("reset").addEventListener("click", function() {
+    scene.reset();
+});
+
 function darken(e) {
     let button = e.target;
-    let category = button.classList[0];
-    let type = button.value;
-    if (typeMap[category] == type) {
-        button.style.background = TYPE_ON_HOVER;
+    // let category = button.classList[0];
+    let item = button.value;
+    if (itemMap[item]) {
+        button.style.background = ITEM_ON_HOVER;
     }
     else {
-        button.style.background = TYPE_OFF_HOVER;
+        button.style.background = ITEM_OFF_HOVER;
     }
 }
 
 function lighten(e) {
     let button = e.target;
-    let category = button.classList[0];
-    let type = button.value;
-    if (typeMap[category] == type) {
-        button.style.background = TYPE_ON;
+    // let category = button.classList[0];
+    let item = button.value;
+    if (itemMap[item]) {
+        button.style.background = ITEM_ON;
     }
     else {
-        button.style.background = TYPE_OFF;
+        button.style.background = ITEM_OFF;
     }
 }
 
@@ -138,45 +145,32 @@ function toggleElement(e) {
     // get obj type. e.g. head, face, etc
     let button = e.target;
     let category = button.classList[0];
-    let type = button.value;
+    let item = button.value;
     console.log("button value: " + button.value);
 
     // if there is an obj
-    if (typeMap[category] == type) {
-        console.log("remove");
-        clearType(category);
-        typeMap[category] = "";
-        button.style.background = "transparent";
+    if (itemMap[item]) {
+        console.log("app.js - remove");
+        itemMap[item] = 0;
+        button.style.background = ITEM_OFF;
     }
     else {
-        console.log("add");
-        addType(button.value, category);
-        typeMap[category] = type;
-        toggleChoices(category, type);
+        console.log("app.js - add");
+        itemMap[item] = 1;
+        button.style.background = ITEM_ON;
+        // toggleChoices(category, item);
     }
+    scene.toggle(category, item);
 }
 
-function clearType(category) {
-    if (category == HEAD) {
-        scene.head.clear();
-    }
-}
-
-function addType(type, category) {
-    clearType(category);
-    if (category == HEAD) {
-        scene.head.addObject(type, scene.head);
-    }
-}
-
-function toggleChoices(category, type) {
+function toggleChoices(category, item) {
     let buttons = document.getElementsByClassName(category);
     for (let i = 0; i < buttons.length; i++) {
-        if (buttons[i].value == type) {
-            buttons[i].style.background = TYPE_ON;
+        if (buttons[i].value == item) {
+            buttons[i].style.background =ITEM_ON;
         }
         else {
-            buttons[i].style.background = TYPE_OFF;
+            buttons[i].style.background = ITEM_OFF;
         }
     }
 }

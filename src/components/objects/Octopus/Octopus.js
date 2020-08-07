@@ -21,18 +21,18 @@ class Octopus extends Group {
 
     // Init state
     this.state = {
-      gui: parent.state.gui,
-      bob: true,
-      spin: this.spin.bind(this),
-      twirl: 0,
-  };
+		gui: parent.state.gui,
+		bob: true,
+		spin: this.spin.bind(this),
+		twirl: 0,
+	};
   
-
-    var material = new THREE.MeshPhongMaterial({
-      color: 0xff4466,
-      specular: 0xffffff,
-      shininess: 100
-    });
+	this.name = "OCTOPUS"
+	var material = new THREE.MeshPhongMaterial({
+		color: 0xff4466,
+		specular: 0xffffff,
+		shininess: 100
+	});
 
 	const objloader = new OBJLoader();
 	const mtlLoader = new MTLLoader();

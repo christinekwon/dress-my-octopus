@@ -42,9 +42,9 @@ class SeedScene extends Scene {
         const lights = new BasicLights();
         this.add(octopus, lights);
 
-        const head = new Head(this);
-        this.add(head);
-        this.head = head;
+        // const head = new Head(this);
+        // this.add(head);
+        // this.head = head;
 
         // this.addFlower();
 
@@ -78,6 +78,35 @@ class SeedScene extends Scene {
         // Call update for each object in the updateList
         for (const obj of updateList) {
             obj.update(timeStamp);
+        }
+    }
+
+    toggle(category, item) {
+        // console.log("seedscene.js - toggle");
+        let currentItems = this.children;
+        let disposed = 0;
+        // console.log("updateList before: ");
+        // console.log(currentItems);
+        for (let i = 0; i < currentItems.length; i++) {
+            if (currentItems[i].item == item) {
+                console.log("seedscene.js - disposed");
+                currentItems[i].dispose();
+                disposed = 1;
+                break;
+            }
+        }
+        if (!disposed) {
+            console.log("seedscene.js - added");
+            const head = new Head(this, item);
+            this.add(head);
+        }
+        // console.log("updateList after: ");
+        // console.log(currentItems);
+    }
+
+    reset() {
+        while (this.children.length > 2) {
+            this.remove(this.children[2]);
         }
     }
 

@@ -10,32 +10,38 @@ import * as THREE from "three";
 import { ResourceTracker } from "../../tracker";
 
 class Head extends Group {
-	constructor(parent) {
+	constructor(parent, item) {
 		// Call parent Group() constructor
 		super();
 
 		// Init state
 		this.state = {
-		gui: parent.state.gui,
-		bob: true,
-		spin: this.spin.bind(this),
-		twirl: 0,
-	};
+			gui: parent.state.gui,
+			bob: true,
+			spin: this.spin.bind(this),
+			twirl: 0,
+		};
 
+		this.tracker = new ResourceTracker();
+		const track = this.tracker.track.bind(this.tracker);
+
+		this.category = "HEAD";
+		this.item = item;
 
 		var material = new THREE.MeshPhongMaterial({
-		color: 0xff4466,
-		specular: 0xffffff,
-		shininess: 100
+			color: 0xff4466,
+			specular: 0xffffff,
+			shininess: 100
 		});
 
-		this.typeMap = {
+		this.itemMap = {
 			"HEART": [HEART_MAT, HEART_OBJ, 0, -1, 0],
 			"BOW": [BOW_MAT, BOW_OBJ, 0, -1, 0],
 			"CAP": [HEART_MAT, HEART_OBJ, 0, 1, 0],
 			"HAT": [HEART_MAT, HEART_OBJ, 0, -5, 0]
 		}
 
+		this.addItem(item, this);
 		parent.addToUpdateList(this);
 		
 		// Populate GUI
@@ -44,8 +50,8 @@ class Head extends Group {
 
 	}
 
-	addObject(type, self) {
-		var params = self.typeMap[type];
+	addItem(item, self) {
+		var params = self.itemMap[item];
 		//   console.log(self);
 		const objloader = new OBJLoader();
 		const mtlLoader = new MTLLoader();
@@ -58,13 +64,14 @@ class Head extends Group {
 				object.rotation.set( 0, -Math.PI, 0 ); 
 				self.add( object );
 			});
-
 		});
 	}
 
-	clear() {
-		this.children = [];
-	}
+	dispose() {
+		console.log("Head.js - disposed");
+        this.parent.remove(this);
+        this.tracker.dispose();
+    }
 
 	spin() {
 		// Add a simple twirl
