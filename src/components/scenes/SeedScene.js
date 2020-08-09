@@ -3,6 +3,8 @@ import { Scene, Color } from 'three';
 import { Flower, Land, Octopus, Head } from 'objects';
 import { BasicLights } from 'lights';
 import * as THREE from "three";
+import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
+
 // import { ResourceTracker } from "tracker";
 import POSX from "./textures/Earth/posx.jpg";
 import NEGX from "./textures/Earth/negx.jpg";
@@ -23,44 +25,33 @@ class SeedScene extends Scene {
             rotationSpeed: 1,
             updateList: [],
             bob: true,
+            spin: this.spin.bind(this),
+            twirl: 0,
         };
 
         // Set background to a nice color
         this.background = new Color(0xffcccc);
 
-        // this.background = new THREE.CubeTextureLoader()
-		// 	.load( [
-        //         POSX, NEGX,
-        //         POSY, NEGY,
-        //         POSZ, NEGZ
-        // ] );
-
-        // Add meshes to scene
-        // const land = new Land();
         const octopus = new Octopus(this);
         this.octopus = octopus;
         const lights = new BasicLights();
         this.add(octopus, lights);
 
-        // const head = new Head(this);
-        // this.add(head);
-        // this.head = head;
-
-        // this.addFlower();
-
         // Populate GUI
         this.state.gui.add(this.state, 'bob');
-        // this.state.gui.add(this.state, 'rotationSpeed', -5, 5);
+        this.state.gui.add(this.state, 'spin');
+        this.state.gui.add(this.state, 'rotationSpeed', -30, 30);
     }
 
     addToUpdateList(object) {
         this.state.updateList.push(object);
+        object.spin.bind(object);
     }
 
     update(timeStamp) {
         const { rotationSpeed, updateList } = this.state;
         // spins objects
-        // this.rotation.y = (rotationSpeed * timeStamp) / 10000;
+        this.rotation.y = (rotationSpeed * timeStamp) / 10000;
 
         if (this.state.bob) {
             for (let obj of updateList) {
@@ -75,6 +66,13 @@ class SeedScene extends Scene {
             }
         }
 
+        if (this.state.twirl > 0) {
+            for (let obj of updateList) {
+                obj.rotation.y += Math.PI / 8;
+            }
+            this.state.twirl -= Math.PI / 8;
+        }
+
         // Call update for each object in the updateList
         for (const obj of updateList) {
             obj.update(timeStamp);
@@ -82,42 +80,53 @@ class SeedScene extends Scene {
     }
 
     toggle(category, item) {
-        // console.log("seedscene.js - toggle");
         let currentItems = this.children;
         let disposed = 0;
-        // console.log("updateList before: ");
-        // console.log(currentItems);
         for (let i = 0; i < currentItems.length; i++) {
             if (currentItems[i].item == item) {
-                console.log("seedscene.js - disposed");
+                // console.log("seedscene.js - disposed");
                 currentItems[i].dispose();
                 disposed = 1;
                 break;
             }
         }
         if (!disposed) {
-            console.log("seedscene.js - added");
+            // console.log("seedscene.js - added");
             const head = new Head(this, item);
             this.add(head);
         }
-        // console.log("updateList after: ");
-        // console.log(currentItems);
     }
+
+    spin() {
+		// Add a simple twirl
+		this.state.twirl += 12 * Math.PI;
+
+		// Use timing library for more precice "bounce" animation
+		// TweenJS guide: http://learningthreejs.com/blog/2011/08/17/tweenjs-for-smooth-animation/
+        // Possible easings: http://sole.github.io/tween.js/examples/03_graphs.html
+        const { updateList } = this.state;
+
+        for (const obj of updateList) {
+            const jumpUp = new TWEEN.Tween(obj.position)
+                .to({ y: obj.position.y + 3 }, 300)
+                .easing(TWEEN.Easing.Quadratic.Out);
+		    const fallDown = new TWEEN.Tween(obj.position)
+                .to({ y: 0 }, 300)
+                .easing(TWEEN.Easing.Quadratic.In);
+
+            // Fall down after jumping up
+            jumpUp.onComplete(() => fallDown.start());
+
+            // Start animation
+            jumpUp.start();
+        }
+
+	}
 
     reset() {
         while (this.children.length > 2) {
             this.remove(this.children[2]);
         }
-    }
-
-    addFlower() {
-        const flower = new Flower(this);
-        this.add(flower);
-        this.flower = flower;
-    }
-
-    removeFlower() {
-        this.flower.dispose();
     }
 }
 

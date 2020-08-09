@@ -41,7 +41,7 @@ class Octopus extends Group {
 		objLoader.setMaterials( materials );//Set the materials for the objects using OBJLoader's setMaterials method
 		objLoader.load( MODEL, object => {
 			// object.scale.set( 0, 0, 1 ); 
-			object.position.set( 0, -1, 0 ); 
+			object.position.set( 0, -2, 0 ); 
 			object.rotation.set( 0, 0, 0 ); 
 			parent.octopus.add( object );
 		});
@@ -119,8 +119,6 @@ class Octopus extends Group {
 	}
 
 	update(timeStamp) {
-		// console.log(this.leg1.geometry);
-		// this.leg1.geometry.vertices[50].x += 0.1;
         if (this.state.bob) {
             // Bob back antd forth
             this.rotation.z = 0.05 * Math.sin(timeStamp / 300);
@@ -130,8 +128,6 @@ class Octopus extends Group {
             this.state.twirl -= Math.PI / 8;
             this.rotation.y += Math.PI / 8;
         }
-
-        // Advance tween animations, if any exist
         TWEEN.update();
 	}
 }

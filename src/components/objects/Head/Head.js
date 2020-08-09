@@ -3,8 +3,12 @@ import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import HEART_OBJ from "./heart.obj";
 import HEART_MAT from "./heart.mtl";
+import OCTOPUS_OBJ from "./Octopus.obj";
+import OCTOPUS_MAT from "./Octopus.mtl";
 import BOW_OBJ from "./bow.obj";
 import BOW_MAT from "./bow.mtl";
+import NECKLACE_OBJ from "./necklace.obj";
+import NECKLACE_MAT from "./necklace.mtl";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
 import * as THREE from "three";
 import { ResourceTracker } from "../../tracker";
@@ -35,10 +39,12 @@ class Head extends Group {
 		});
 
 		this.itemMap = {
-			"HEART": [HEART_MAT, HEART_OBJ, 0, -1, 0],
-			"BOW": [BOW_MAT, BOW_OBJ, 0, -1, 0],
-			"CAP": [HEART_MAT, HEART_OBJ, 0, 1, 0],
-			"HAT": [HEART_MAT, HEART_OBJ, 0, -5, 0]
+			"HEART": [HEART_MAT, HEART_OBJ, 0, -2, 0, 1],
+			"BOW": [BOW_MAT, BOW_OBJ, 0, -2, 0, 1],
+			// "CAP": [HEART_MAT, HEART_OBJ, 0, 1, 0, 1],
+			// "HAT": [HEART_MAT, HEART_OBJ, 0, -5, 0, 1],
+			"BABY": [OCTOPUS_MAT, OCTOPUS_OBJ, 2, -2, -2, 0.3],
+			"NECKLACE": [NECKLACE_MAT, NECKLACE_OBJ, 0, -2, 0, 1],
 		}
 
 		this.addItem(item, this);
@@ -52,14 +58,12 @@ class Head extends Group {
 
 	addItem(item, self) {
 		var params = self.itemMap[item];
-		//   console.log(self);
-		const objloader = new OBJLoader();
 		const mtlLoader = new MTLLoader();
 		mtlLoader.load(params[0], function ( materials ) {
 			var objLoader = new OBJLoader();
 			objLoader.setMaterials( materials );//Set the materials for the objects using OBJLoader's setMaterials method
 			objLoader.load( params[1], object => {
-				// object.scale.set( 0, 0, 1 ); 
+				object.scale.multiplyScalar(params[5]); 
 				object.position.set( params[2], params[3], params[4] ); 
 				object.rotation.set( 0, -Math.PI, 0 ); 
 				self.add( object );
@@ -68,7 +72,7 @@ class Head extends Group {
 	}
 
 	dispose() {
-		console.log("Head.js - disposed");
+		// console.log("Head.js - disposed");
         this.parent.remove(this);
         this.tracker.dispose();
     }
@@ -95,14 +99,11 @@ class Head extends Group {
 	}
 
 	update(timeStamp) {
-		// console.log(this.leg1.geometry);
-		// this.leg1.geometry.vertices[50].x += 0.1;
         if (this.state.bob) {
             // Bob back antd forth
             this.rotation.z = 0.05 * Math.sin(timeStamp / 300);
         }
         if (this.state.twirl > 0) {
-            // Lazy implementation of twirl
             this.state.twirl -= Math.PI / 8;
             this.rotation.y += Math.PI / 8;
         }

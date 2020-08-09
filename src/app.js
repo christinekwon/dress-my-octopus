@@ -18,7 +18,10 @@ const LEGS = "legs";
 const BASE = "base";
 const ACC = "acc";
 
-const BACKGROUND = new Color("rgb(255, 243, 175)");
+// yellow
+// const BACKGROUND = new Color("rgb(255, 243, 175)");
+
+const BACKGROUND = new Color("rgb(155, 254, 247)");
 const ITEM_ON = "rgba(255, 217, 0, 0.8)";
 const ITEM_OFF = "transparent";
 const ITEM_ON_HOVER = "rgba(255, 217, 0, 1.0)";
@@ -29,6 +32,8 @@ var itemMap = {
     "BOW": 0,
     "CAP": 0,
     "HAT": 0,
+    "BABY": 0,
+    "NECKLACE": 0,
 }
 
 // Initialize core ThreeJS components
@@ -37,7 +42,7 @@ const camera = new PerspectiveCamera();
 const renderer = new WebGLRenderer({ antialias: true });
 
 // Set up camera
-camera.position.set(0, 3, -20);
+camera.position.set(0, 0, -10);
 camera.lookAt(new Vector3(0, 0, 0));
 
 scene.background = BACKGROUND;
@@ -146,16 +151,16 @@ function toggleElement(e) {
     let button = e.target;
     let category = button.classList[0];
     let item = button.value;
-    console.log("button value: " + button.value);
+    // console.log("button value: " + button.value);
 
     // if there is an obj
     if (itemMap[item]) {
-        console.log("app.js - remove");
+        // console.log("app.js - remove");
         itemMap[item] = 0;
         button.style.background = ITEM_OFF;
     }
     else {
-        console.log("app.js - add");
+        // console.log("app.js - add");
         itemMap[item] = 1;
         button.style.background = ITEM_ON;
         // toggleChoices(category, item);
