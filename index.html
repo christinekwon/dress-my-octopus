@@ -54,4 +54,30 @@
         color: rgb(235, 103, 255);
 
         font-size: 20px;
-    }</style><body><div class="main-container"><div class="collapsible-container"><button class="collapsible">options</button><div class="content"><button class="head choice" id="heart" value="HEART">hearts</button> <button class="head choice" id="bow" value="BOW">bow</button> <button class="head choice" id="baby" value="BABY">baby</button> <button class="head choice" id="necklace" value="NECKLACE">necklace</button></div></div><button id="reset">reset</button></div><script src="/dress-my-octopus/main.2cf869d9453313ab07e6.js"></script></body><script></script></html>
+    }
+
+    .loader-wrapper {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #761eac;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+    }
+
+    .loader {
+        display: inline-block;
+        width: 100px;
+        height: 30px;
+        position: relative;
+        color: rgb(255, 245, 223);
+        animation: loader 2s infinite ease;
+        margin: 0 auto;
+        text-align: center;
+    }</style><body><div class="loader-wrapper"><div class="loader"><span class="loader-inner">loading...</span></div></div><div class="main-container"><div class="collapsible-container"><button class="collapsible">options</button><div class="content"><button class="head choice" id="heart" value="HEART">hearts</button> <button class="head choice" id="bow" value="BOW">bow</button> <button class="head choice" id="baby" value="BABY">baby</button> <button class="head choice" id="necklace" value="NECKLACE">necklace</button></div></div><button id="reset">reset</button></div><script src="/dress-my-octopus/main.4ed2ebc4b7f974ddd48a.js"></script></body><script>$(window).on("load",function(){
+	$(".loader-wrapper").fadeOut("slow");
+});</script></html>
