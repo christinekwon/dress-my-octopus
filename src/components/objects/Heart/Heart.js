@@ -45,7 +45,8 @@ class Heart extends Group {
 			shininess: 100
 		});
 	
-
+		const objloader = new OBJLoader();
+		const mtlLoader = new MTLLoader();
 		objloader.setMaterials(mtlLoader.parse(MATERIAL)).load(MODEL, obj => {
 			obj.position.set(0, -1, 0);
 			obj.rotation.set(0, Math.PI, 0);
