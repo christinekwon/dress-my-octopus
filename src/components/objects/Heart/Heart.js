@@ -1,4 +1,4 @@
-import { Group, Scene } from "three";
+import { Group, Scene, RedFormat } from "three";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import HEART_OBJ from "./heart.obj";
@@ -39,19 +39,29 @@ class Heart extends Group {
 		this.pos = [0, -2, 0];
 		this.size = 1;
 
-		var material = new THREE.MeshPhongMaterial({
+		// red 
+		var redMaterial = new THREE.MeshPhongMaterial({
 			color: 0xff4466,
+			specular: 0xffffff,
+			shininess: 100
+		});
+
+		var whiteMaterial = new THREE.MeshPhongMaterial({
+			color: 0xffffff,
 			specular: 0xffffff,
 			shininess: 100
 		});
 	
 		const objloader = new OBJLoader();
-		const mtlLoader = new MTLLoader();
-		objloader.setMaterials(mtlLoader.parse(HEART_MAT)).load(HEART_OBJ, obj => {
+		// const mtlLoader = new MTLLoader();
+		objloader.load(HEART_OBJ, obj => {
 			obj.position.set(0, -1, 0);
 			obj.rotation.set(0, Math.PI, 0);
 
-			obj.children[0].material = material;
+			obj.children[0].material = whiteMaterial;
+			obj.children[1].material = redMaterial;
+			obj.children[2].material = whiteMaterial;
+			obj.children[3].material = redMaterial;
 
 			obj.matrixAutoUpdate = false;
 			obj.updateMatrix();
