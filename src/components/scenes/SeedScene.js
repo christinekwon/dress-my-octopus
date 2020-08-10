@@ -1,6 +1,6 @@
 import * as Dat from 'dat.gui';
 import { Scene, Color } from 'three';
-import { Flower, Land, Octopus, Head, Heart } from 'objects';
+import { Octopus, Head, Heart, Bow } from 'objects';
 import { BasicLights } from 'lights';
 import * as THREE from "three";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
@@ -29,6 +29,22 @@ class SeedScene extends Scene {
             twirl: 0,
         };
 
+        this.objects = {
+            "HEART": new Heart(this),
+            "BOW": new Bow(this),
+        }
+        // for (const obj of this.objects) {
+        //     this.add(obj);
+        // }
+        
+
+        // this.add(this.objects["HEART"]);
+        // this.add(this.objects["BOW"]);
+        // this.add(this.objects.heart);
+        // console.log(this.objects.keys);
+        for (var obj in this.objects) {
+            this.add(this.objects[obj]);
+        }
         // Set background to a nice color
         this.background = new Color(0xffcccc);
 
@@ -80,22 +96,29 @@ class SeedScene extends Scene {
     }
 
     toggle(item) {
-        let currentItems = this.children;
-        let disposed = 0;
-        for (let i = 0; i < currentItems.length; i++) {
-            if (currentItems[i].item == item) {
-                // console.log("seedscene.js - disposed");
-                currentItems[i].dispose();
-                disposed = 1;
-                break;
-            }
-        }
-        if (!disposed) {
-            // console.log("seedscene.js - added");
-            const obj = new Heart(this);
-            this.add(obj);
+        // let currentItems = this.children;
+        // let disposed = 0;
+        // for (let i = 0; i < currentItems.length; i++) {
+        //     if (currentItems[i].item == item) {
+        //         console.log("seedscene.js - disposed");
+        //         currentItems[i].dispose();
+        //         disposed = 1;
+        //         break;
+        //     }
+        // }
+        // if (!disposed) {
+        //     // if (item ==)
+        //     console.log("seedscene.js - added");
+        //     // const obj = new Heart(this);
+        //     // this.add(obj);
 
-        }
+        //     // console.log(obj.visible);
+        //     console.log(this.objects.heart.visible);
+        //     this.objects.heart.visible = true;
+        //     console.log(this.objects.heart.visible);
+        // }
+
+        this.objects[item].visible = !this.objects[item].visible;
     }
 
     spin() {

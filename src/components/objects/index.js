@@ -3,3 +3,4 @@ export * from './Land';
 export * from './Octopus';
 export * from './Head';
 export * from './Heart';
+export * from './Bow';
