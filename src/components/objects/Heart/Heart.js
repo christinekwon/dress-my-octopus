@@ -39,7 +39,29 @@ class Heart extends Group {
 		this.pos = [0, -2, 0];
 		this.size = 1;
 
-		this.addItem(this);
+		var material = new THREE.MeshPhongMaterial({
+			color: 0xff4466,
+			specular: 0xffffff,
+			shininess: 100
+		});
+	
+
+		objloader.setMaterials(mtlLoader.parse(MATERIAL)).load(MODEL, obj => {
+			obj.position.set(0, -1, 0);
+			obj.rotation.set(0, Math.PI, 0);
+
+			obj.children[0].material = material;
+
+			obj.matrixAutoUpdate = false;
+			obj.updateMatrix();
+			
+			// uncomment to add octopus
+			this.add(obj);
+			this.obj = obj;
+
+		});
+
+		// this.addItem(this);
 		parent.addToUpdateList(this);
 	}
 
