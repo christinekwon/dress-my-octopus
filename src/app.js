@@ -22,6 +22,7 @@ const ACC = "acc";
 // const BACKGROUND = new Color("rgb(255, 243, 175)");
 
 const BACKGROUND = new Color("rgb(155, 254, 247)");
+// const BACKGROUND = new Color("rgb(0, 0, 0)");
 const ITEM_ON = "rgba(255, 217, 0, 0.8)";
 const ITEM_OFF = "transparent";
 const ITEM_ON_HOVER = "rgba(255, 217, 0, 1.0)";
@@ -36,15 +37,13 @@ var itemMap = {
     "NECKLACE": 0,
 }
 
-
-
 // Initialize core ThreeJS components
 const scene = new SeedScene();
 const camera = new PerspectiveCamera();
 const renderer = new WebGLRenderer({ antialias: true });
 
 // Set up camera
-camera.position.set(0, 0, -10);
+camera.position.set(0, 2, -10);
 camera.lookAt(new Vector3(0, 0, 0));
 
 scene.background = BACKGROUND;

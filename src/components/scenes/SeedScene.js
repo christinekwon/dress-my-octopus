@@ -1,6 +1,6 @@
 import * as Dat from 'dat.gui';
 import { Scene, Color } from 'three';
-import { Octopus, Head, Heart, Bow } from 'objects';
+import { Octopus, Heart, Bow, Necklace, Baby } from 'objects';
 import { BasicLights } from 'lights';
 import * as THREE from "three";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
@@ -32,6 +32,8 @@ class SeedScene extends Scene {
         this.objects = {
             "HEART": new Heart(this),
             "BOW": new Bow(this),
+            "NECKLACE": new Necklace(this),
+            "BABY": new Baby(this),
         }
         // for (const obj of this.objects) {
         //     this.add(obj);
@@ -56,7 +58,7 @@ class SeedScene extends Scene {
         // Populate GUI
         this.state.gui.add(this.state, 'bob');
         this.state.gui.add(this.state, 'spin');
-        this.state.gui.add(this.state, 'rotationSpeed', -30, 30);
+        // this.state.gui.add(this.state, 'rotationSpeed', -30, 30);
     }
 
     addToUpdateList(object) {
@@ -67,7 +69,7 @@ class SeedScene extends Scene {
     update(timeStamp) {
         const { rotationSpeed, updateList } = this.state;
         // spins objects
-        this.rotation.y = (rotationSpeed * timeStamp) / 10000;
+        // this.rotation.y = (rotationSpeed * timeStamp) / 10000;
 
         if (this.state.bob) {
             for (let obj of updateList) {
@@ -118,6 +120,7 @@ class SeedScene extends Scene {
         //     console.log(this.objects.heart.visible);
         // }
 
+        console.log(this.objects[item]);
         this.objects[item].visible = !this.objects[item].visible;
     }
 

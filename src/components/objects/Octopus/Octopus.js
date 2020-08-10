@@ -29,9 +29,9 @@ class Octopus extends Group {
   
 	this.name = "OCTOPUS"
 	var material = new THREE.MeshPhongMaterial({
-		color: 0xff4466,
+		color: 0x9883e5,
 		specular: 0xffffff,
-		shininess: 100
+		shininess: 1000
 	});
 
 	const objloader = new OBJLoader();
@@ -51,7 +51,7 @@ class Octopus extends Group {
 
     objloader.load(MODEL, obj => {
 		// console.log(mtlLoader.parse(MATERIAL));
-      obj.position.set(0, -1, 0);
+      obj.position.set(0, -1.5, 0);
       obj.rotation.set(0, Math.PI, 0);
 
       obj.children[0].material = material;

@@ -56,20 +56,20 @@ class Head extends Group {
 
 	}
 
-	addItem(item, self) {
-		var params = self.itemMap[item];
-		const mtlLoader = new MTLLoader();
-		mtlLoader.load(params[0], function ( materials ) {
-			var objLoader = new OBJLoader();
-			objLoader.setMaterials( materials );//Set the materials for the objects using OBJLoader's setMaterials method
-			objLoader.load( params[1], object => {
-				object.scale.multiplyScalar(params[5]); 
-				object.position.set( params[2], params[3], params[4] ); 
-				object.rotation.set( 0, -Math.PI, 0 ); 
-				self.add( object );
-			});
-		});
-	}
+	// addItem(item, self) {
+	// 	var params = self.itemMap[item];
+	// 	const mtlLoader = new MTLLoader();
+	// 	mtlLoader.load(params[0], function ( materials ) {
+	// 		var objLoader = new OBJLoader();
+	// 		objLoader.setMaterials( materials );//Set the materials for the objects using OBJLoader's setMaterials method
+	// 		objLoader.load( params[1], object => {
+	// 			object.scale.multiplyScalar(params[5]); 
+	// 			object.position.set( params[2], params[3], params[4] ); 
+	// 			object.rotation.set( 0, -Math.PI, 0 ); 
+	// 			self.add( object );
+	// 		});
+	// 	});
+	// }
 
 	dispose() {
 		// console.log("Head.js - disposed");

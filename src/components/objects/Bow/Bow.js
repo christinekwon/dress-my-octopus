@@ -23,21 +23,6 @@ class Bow extends Group {
 		const track = this.tracker.track.bind(this.tracker);
 
 		this.item = "BOW";
-
-		// this.itemMap = {
-		// 	"HEART": [HEART_MAT, HEART_OBJ, 0, -2, 0, 1],
-		// 	"BOW": [BOW_MAT, BOW_OBJ, 0, -2, 0, 1],
-		// 	// "CAP": [HEART_MAT, HEART_OBJ, 0, 1, 0, 1],
-		// 	// "HAT": [HEART_MAT, HEART_OBJ, 0, -5, 0, 1],
-		// 	"BABY": [OCTOPUS_MAT, OCTOPUS_OBJ, 2, -2, -2, 0.3],
-		// 	"NECKLACE": [NECKLACE_MAT, NECKLACE_OBJ, 0, -2, 0, 1],
-		// }
-
-		// this.mat = HEART_MAT;
-		this.obj = MODEL;
-		this.pos = [0, -2, 0];
-		this.size = 1;
-
 		// red 
 		var redMaterial = new THREE.MeshPhongMaterial({
 			color: 0xff4466,
@@ -45,8 +30,8 @@ class Bow extends Group {
 			shininess: 100
 		});
 
-		var whiteMaterial = new THREE.MeshPhongMaterial({
-			color: 0xffffff,
+		var material = new THREE.MeshPhongMaterial({
+			color: 0xe39ec1,
 			specular: 0xffffff,
 			shininess: 100
 		});
@@ -54,10 +39,10 @@ class Bow extends Group {
 		const objloader = new OBJLoader();
 		// const mtlLoader = new MTLLoader();
 		objloader.load(MODEL, obj => {
-			obj.position.set(0, -1, 0);
-			obj.rotation.set(0, Math.PI, 0);
+			obj.position.set(0, -1.5, 0);
+			obj.rotation.set(0, -Math.PI, 0);
 
-			obj.children[0].material = whiteMaterial;
+			obj.children[0].material = material;
 			
 			obj.matrixAutoUpdate = false;
 			obj.updateMatrix();
@@ -74,19 +59,19 @@ class Bow extends Group {
 
 	}
 
-	addItem(self) {
-		const mtlLoader = new MTLLoader();
-		mtlLoader.load(HEART_MAT, function ( materials ) {
-			var objLoader = new OBJLoader();
-			objLoader.setMaterials( materials );//Set the materials for the objects using OBJLoader's setMaterials method
-			objLoader.load( HEART_OBJ, object => {
-				object.scale.multiplyScalar(self.size); 
-				object.position.set( self.pos[0], self.pos[1], self.pos[2] ); 
-				object.rotation.set( 0, -Math.PI, 0 ); 
-				self.add( object );
-			});
-		});
-	}
+	// addItem(self) {
+	// 	const mtlLoader = new MTLLoader();
+	// 	mtlLoader.load(HEART_MAT, function ( materials ) {
+	// 		var objLoader = new OBJLoader();
+	// 		objLoader.setMaterials( materials );//Set the materials for the objects using OBJLoader's setMaterials method
+	// 		objLoader.load( HEART_OBJ, object => {
+	// 			object.scale.multiplyScalar(self.size); 
+	// 			object.position.set( self.pos[0], self.pos[1], self.pos[2] ); 
+	// 			object.rotation.set( 0, -Math.PI, 0 ); 
+	// 			self.add( object );
+	// 		});
+	// 	});
+	// }
 
 	dispose() {
 		// console.log("Head.js - disposed");
