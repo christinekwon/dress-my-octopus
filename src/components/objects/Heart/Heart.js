@@ -47,7 +47,7 @@ class Heart extends Group {
 	
 		const objloader = new OBJLoader();
 		const mtlLoader = new MTLLoader();
-		objloader.setMaterials(mtlLoader.parse(MATERIAL)).load(MODEL, obj => {
+		objloader.setMaterials(mtlLoader.parse(HEART_MAT)).load(HEART_OBJ, obj => {
 			obj.position.set(0, -1, 0);
 			obj.rotation.set(0, Math.PI, 0);
 
