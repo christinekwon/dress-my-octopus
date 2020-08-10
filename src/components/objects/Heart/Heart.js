@@ -2,7 +2,7 @@ import { Group, Scene, RedFormat } from "three";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import HEART_OBJ from "./heart.obj";
-import HEART_MAT from "./heart.mtl";
+// import HEART_MAT from "./heart.mtl";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
 import * as THREE from "three";
 import { ResourceTracker } from "../../tracker";
@@ -34,7 +34,7 @@ class Heart extends Group {
 		// 	"NECKLACE": [NECKLACE_MAT, NECKLACE_OBJ, 0, -2, 0, 1],
 		// }
 
-		this.mat = HEART_MAT;
+		// this.mat = HEART_MAT;
 		this.obj = HEART_OBJ;
 		this.pos = [0, -2, 0];
 		this.size = 1;

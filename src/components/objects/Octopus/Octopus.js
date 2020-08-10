@@ -2,7 +2,7 @@ import { Group, Scene } from "three";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import MODEL from "./Octopus.obj";
-import MATERIAL from "./Octopus.mtl";
+// import MATERIAL from "./Octopus.mtl";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
 import * as THREE from "three";
 import POSX from "./textures/FishPond/posx.jpg";
@@ -35,36 +35,36 @@ class Octopus extends Group {
 	});
 
 	const objloader = new OBJLoader();
-	const mtlLoader = new MTLLoader();
-	mtlLoader.load(MATERIAL, function ( materials ) {
-		var objLoader = new OBJLoader();
-		objLoader.setMaterials( materials );//Set the materials for the objects using OBJLoader's setMaterials method
-		objLoader.load( MODEL, object => {
-			// object.scale.set( 0, 0, 1 ); 
-			object.position.set( 0, -2, 0 ); 
-			object.rotation.set( 0, 0, 0 ); 
-			parent.octopus.add( object );
-		});
-
-	});
-
-
-    // objloader.setMaterials(mtlLoader.parse(MATERIAL)).load(MODEL, obj => {
-	// 	console.log(mtlLoader.parse(MATERIAL));
-    //   obj.position.set(0, -1, 0);
-    //   obj.rotation.set(0, Math.PI, 0);
-
-    //   obj.children[0].material = material;
-
-
-    //   obj.matrixAutoUpdate = false;
-    //   obj.updateMatrix();
-	  
-	//   // uncomment to add octopus
-    //   this.add(obj);
-    //   this.obj = obj;
+	// const mtlLoader = new MTLLoader();
+	// mtlLoader.load(MATERIAL, function ( materials ) {
+	// 	var objLoader = new OBJLoader();
+	// 	objLoader.setMaterials( materials );//Set the materials for the objects using OBJLoader's setMaterials method
+	// 	objLoader.load( MODEL, object => {
+	// 		// object.scale.set( 0, 0, 1 ); 
+	// 		object.position.set( 0, -2, 0 ); 
+	// 		object.rotation.set( 0, 0, 0 ); 
+	// 		parent.octopus.add( object );
+	// 	});
 
 	// });
+
+
+    objloader.load(MODEL, obj => {
+		// console.log(mtlLoader.parse(MATERIAL));
+      obj.position.set(0, -1, 0);
+      obj.rotation.set(0, Math.PI, 0);
+
+      obj.children[0].material = material;
+
+
+      obj.matrixAutoUpdate = false;
+      obj.updateMatrix();
+	  
+	  // uncomment to add octopus
+      this.add(obj);
+      this.obj = obj;
+
+	});
 	
 	// radius, widthsegments, heightsegments, phistart, philength, thetastart, thetalength
 	// var geometry = new THREE.SphereGeometry( 2, 32, 32 );
