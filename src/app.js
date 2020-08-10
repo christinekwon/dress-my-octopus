@@ -36,6 +36,8 @@ var itemMap = {
     "NECKLACE": 0,
 }
 
+
+
 // Initialize core ThreeJS components
 const scene = new SeedScene();
 const camera = new PerspectiveCamera();

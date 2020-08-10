@@ -68,10 +68,38 @@
 
         font-size: 20px;
     }
+
+    .loader-wrapper {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #761eac;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+    }
+
+    .loader {
+        display: inline-block;
+        width: 100px;
+        height: 30px;
+        position: relative;
+        color: rgb(255, 245, 223);
+        animation: loader 2s infinite ease;
+        margin: 0 auto;
+        text-align: center;
+    }
 </style>
 
 
 <body>
+    <div class="loader-wrapper">
+        <!-- <span class="loader"><span class="loader-inner"></span></span> -->
+        <div class="loader"><span class="loader-inner">loading...</span></div>
+    </div>
     <div class="main-container">
         <div class="collapsible-container">
             <button class="collapsible">options</button>
@@ -106,6 +134,8 @@
 </body>
 
 <script>
-
+$(window).on("load",function(){
+	$(".loader-wrapper").fadeOut("slow");
+});
 </script>
 </html>
