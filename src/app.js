@@ -165,7 +165,9 @@ function toggleElement(e) {
         button.style.background = ITEM_ON;
         // toggleChoices(category, item);
     }
-    scene.toggle(category, item);
+    // scene.toggle(category, item);
+    scene.toggle(item);
+
 }
 
 function toggleChoices(category, item) {

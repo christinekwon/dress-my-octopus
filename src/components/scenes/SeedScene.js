@@ -1,6 +1,6 @@
 import * as Dat from 'dat.gui';
 import { Scene, Color } from 'three';
-import { Flower, Land, Octopus, Head } from 'objects';
+import { Flower, Land, Octopus, Head, Heart } from 'objects';
 import { BasicLights } from 'lights';
 import * as THREE from "three";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
@@ -79,7 +79,7 @@ class SeedScene extends Scene {
         }
     }
 
-    toggle(category, item) {
+    toggle(item) {
         let currentItems = this.children;
         let disposed = 0;
         for (let i = 0; i < currentItems.length; i++) {
@@ -92,8 +92,9 @@ class SeedScene extends Scene {
         }
         if (!disposed) {
             // console.log("seedscene.js - added");
-            const head = new Head(this, item);
-            this.add(head);
+            const obj = new Heart(this);
+            this.add(obj);
+
         }
     }
 
