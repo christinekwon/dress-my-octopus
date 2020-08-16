@@ -6,3 +6,5 @@ export * from './Heart';
 export * from './Bow';
 export * from './Necklace';
 export * from './Baby';
+export * from './Lash';
+export * from './Lips';

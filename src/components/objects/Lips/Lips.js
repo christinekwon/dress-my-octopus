@@ -1,12 +1,12 @@
 import { Group, Scene, RedFormat } from "three";
-// import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
+import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
-import MODEL from "./baby.obj";
+import MODEL from "./lips.obj";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
 import * as THREE from "three";
 import { ResourceTracker } from "../../tracker";
 
-class Baby extends Group {
+class Lips extends Group {
 	constructor(parent) {
 		// Call parent Group() constructor
 		super();
@@ -22,43 +22,29 @@ class Baby extends Group {
 		this.tracker = new ResourceTracker();
 		const track = this.tracker.track.bind(this.tracker);
 
-		this.item = "BABY";
+		this.item = "LIPS";
+		// red 
+		var redMaterial = new THREE.MeshPhongMaterial({
+			color: 0xff2244,
+			// color: 0xff4466,
+			specular: 0xffffff,
+			shininess: 100
+		});
 
-		var material1 = new THREE.MeshPhongMaterial({
-			color: 0x85cb33,
+		var material = new THREE.MeshPhongMaterial({
+			color: 0xe39ec1,
 			specular: 0xffffff,
-			shininess: 1000
-		});
-		var material2 = new THREE.MeshPhongMaterial({
-			// color: 0xff90b3,
-			color: 0xf397d6,
-			specular: 0xffffff,
-			shininess: 1000
-		});
-		var material3 = new THREE.MeshPhongMaterial({
-			color: 0xfdc5f5,
-			specular: 0xffffff,
-			shininess: 1000
-		});
-		var material4 = new THREE.MeshPhongMaterial({
-			// color: 0xb8336a,
-			color: 0xf42272,
-			specular: 0xffffff,
-			shininess: 1000
+			shininess: 100
 		});
 	
 		const objloader = new OBJLoader();
 		// const mtlLoader = new MTLLoader();
 		objloader.load(MODEL, obj => {
-			obj.position.set(2, -1, -2);
-			obj.scale.multiplyScalar(0.3);
+			obj.position.set(0, -1.5, 0.2);
 			obj.rotation.set(0, -Math.PI, 0);
 
-			obj.children[0].material = material1;
-			obj.children[1].material = material2;
-			obj.children[2].material = material3;
-			obj.children[3].material = material4;
-
+			obj.children[0].material = redMaterial;
+			// obj.children[1].material = redMaterial;
 			
 			obj.matrixAutoUpdate = false;
 			obj.updateMatrix();
@@ -131,4 +117,4 @@ class Baby extends Group {
 	}
 }
 
-export default Baby;
+export default Lips;
