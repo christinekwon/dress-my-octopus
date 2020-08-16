@@ -12,7 +12,7 @@ class BasicLights extends Group {
         // var spotLightHelper = new SpotLightHelper( dir );
         // this.add( spotLightHelper );
         // dir.position.set(0, 1, 2);
-        dir.position.set(0, 2, -7);
+        dir.position.set(3, 2, -7);
         dir.target.position.set(0, 0, 0);
         dir.castShadow = true;
 

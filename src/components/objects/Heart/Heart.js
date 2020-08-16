@@ -25,19 +25,19 @@ class Heart extends Group {
 
 		this.item = "HEART";
 
-		var redMaterial = new THREE.MeshStandardMaterial( {
-			color: 0xff0000,
-			metalness: 1,   // between 0 and 1
-			roughness: 0, // between 0 and 1
-			envMap: envMap,
-			envMapIntensity: 2
-		} );
+		// var redMaterial = new THREE.MeshStandardMaterial( {
+		// 	color: 0xff0000,
+		// 	metalness: 1,   // between 0 and 1
+		// 	roughness: 0, // between 0 and 1
+		// 	envMap: envMap,
+		// 	envMapIntensity: 2
+		// } );
 
-		// var redMaterial = new THREE.MeshPhongMaterial({
-		// 	color: 0xff4466,
-		// 	specular: 0xffffff,
-		// 	shininess: 1000
-		// });
+		var redMaterial = new THREE.MeshPhongMaterial({
+			color: 0xff0000,
+			specular: 0xffffff,
+			shininess: 1000
+		});
 
 		var whiteMaterial = new THREE.MeshPhongMaterial({
 			color: 0xffffff,
@@ -67,7 +67,7 @@ class Heart extends Group {
 
 		// this.addItem(this);
 		parent.addToUpdateList(this);
-		this.visible = false;
+		this.visible = true;
 	}
 
 	addItem(self) {
