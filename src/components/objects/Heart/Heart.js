@@ -67,7 +67,7 @@ class Heart extends Group {
 
 		// this.addItem(this);
 		parent.addToUpdateList(this);
-		this.visible = true;
+		this.visible = false;
 	}
 
 	addItem(self) {

@@ -1,13 +1,20 @@
-import { Group, Scene, RedFormat } from "three";
-import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
+import { Group, Scene, RedFormat, TextureLoader } from "three";
+// import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
-import MODEL from "./lips.obj";
+import MODEL from "./chain.obj";
+// import HEART_MAT from "./heart.mtl";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
 import * as THREE from "three";
 import { ResourceTracker } from "../../tracker";
+import POSX from "../../scenes/textures/Skybox/posx.jpg";
+import NEGX from "../../scenes/textures/Skybox/negx.jpg";
+import POSY from "../../scenes/textures/Skybox/posy.jpg";
+import NEGY from "../../scenes/textures/Skybox/negy.jpg";
+import POSZ from "../../scenes/textures/Skybox/posz.jpg";
+import NEGZ from "../../scenes/textures/Skybox/negz.jpg";
 
-class Lips extends Group {
-	constructor(parent) {
+class Chain extends Group {
+	constructor(parent, envMap) {
 		// Call parent Group() constructor
 		super();
 
@@ -22,17 +29,18 @@ class Lips extends Group {
 		this.tracker = new ResourceTracker();
 		const track = this.tracker.track.bind(this.tracker);
 
-		this.item = "LIPS";
-		// red 
-		var redMaterial = new THREE.MeshPhongMaterial({
-			color: 0xff2244,
-			// color: 0xff4466,
-			specular: 0xffffff,
-			shininess: 100
-		});
+		this.item = "CHAIN";
 
-		var material = new THREE.MeshPhongMaterial({
-			color: 0x5c22fa,
+		var material = new THREE.MeshStandardMaterial( {
+			color: 0xffcc00,
+			metalness: 1,   // between 0 and 1
+			roughness: 0, // between 0 and 1
+			envMap: envMap,
+			envMapIntensity: 2
+		} );
+
+		var material2 = new THREE.MeshPhongMaterial({
+			color: 0xffd900,
 			specular: 0xffffff,
 			shininess: 100
 		});
@@ -40,23 +48,27 @@ class Lips extends Group {
 		const objloader = new OBJLoader();
 		// const mtlLoader = new MTLLoader();
 		objloader.load(MODEL, obj => {
-			// big lips
-			// obj.position.set(0, -1.5, 0.2);
-			// obj.rotation.set(0, -Math.PI, 0);
+			obj.position.set(0, -1.5, 0);
+			obj.rotation.set(0, Math.PI, 0);
 
-			// small lips
-			// obj.position.set(0, -0.5, -0.75);
-			// obj.rotation.set(0, -Math.PI, 0);
-			// obj.scale.multiplyScalar(0.5);
-
-			// med lips
-			obj.position.set(0, -1, -0.3);
-			obj.rotation.set(0, -Math.PI, 0);
-			obj.scale.multiplyScalar(0.75);
-
+			// for (const child of obj.children) {
+			// 	child.material = material;
+			// 	console.log(obj.children.length);
+			// }
 			obj.children[0].material = material;
-			// obj.children[1].material = redMaterial;
-			
+
+			// for (let i = 0; i < 18; i++) {
+			// 	obj.children[i].material = material2;
+			// 	// console.log(obj.children.length);
+			// }
+			// for (let i = 18; i < 36; i++) {
+			// 	obj.children[i].material = material;
+			// }
+
+			// for (const child of obj.children) {
+			// 	child.material[color] = 0xffd900;
+			// }
+
 			obj.matrixAutoUpdate = false;
 			obj.updateMatrix();
 			
@@ -68,8 +80,7 @@ class Lips extends Group {
 
 		// this.addItem(this);
 		parent.addToUpdateList(this);
-		this.visible= false;
-
+		this.visible = false;
 	}
 
 	// addItem(self) {
@@ -128,4 +139,4 @@ class Lips extends Group {
 	}
 }
 
-export default Lips;
+export default Chain;

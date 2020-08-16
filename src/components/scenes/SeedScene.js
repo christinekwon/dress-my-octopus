@@ -1,6 +1,6 @@
 import * as Dat from 'dat.gui';
 import { Scene, Color } from 'three';
-import { Octopus, Heart, Bow, Necklace, Baby, Lash, Lips } from 'objects';
+import { Octopus, Heart, Bow, Necklace, Chain, Baby, Lash, Lips } from 'objects';
 import { BasicLights } from 'lights';
 import * as THREE from "three";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
@@ -40,6 +40,7 @@ class SeedScene extends Scene {
             "HEART": new Heart(this, envMap),
             "BOW": new Bow(this),
             "NECKLACE": new Necklace(this, envMap),
+            "CHAIN": new Chain(this, envMap),
             "BABY": new Baby(this),
             "LASH": new Lash(this),
             "LIPS": new Lips(this),
@@ -160,9 +161,14 @@ class SeedScene extends Scene {
 	}
 
     reset() {
-        while (this.children.length > 2) {
-            this.remove(this.children[2]);
+
+        for (var obj in this.objects) {
+            this.objects[obj].visible = false;
         }
+
+        // while (this.children.length > 2) {
+        //     this.remove(this.children[0]);
+        // }
     }
 }
 

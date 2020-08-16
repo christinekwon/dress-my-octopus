@@ -8,3 +8,4 @@ export * from './Necklace';
 export * from './Baby';
 export * from './Lash';
 export * from './Lips';
+export * from './Chain';

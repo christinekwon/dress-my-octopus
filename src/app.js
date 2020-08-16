@@ -23,10 +23,10 @@ const ACC = "acc";
 
 const BACKGROUND = new Color("rgb(155, 254, 247)");
 // const BACKGROUND = new Color("rgb(0, 0, 0)");
-const ITEM_ON = "rgba(255, 217, 0, 0.8)";
+const ITEM_ON = "rgba(255, 255, 255, 0.75)";
 const ITEM_OFF = "transparent";
-const ITEM_ON_HOVER = "rgba(255, 217, 0, 1.0)";
-const ITEM_OFF_HOVER = "rgba(255, 232, 103, 0.7)";
+const ITEM_ON_HOVER = "rgba(255, 255, 255, 1)";
+const ITEM_OFF_HOVER = "rgba(255, 255, 255, 0.5)";
 
 var itemMap = {
     "HEART": 0,
@@ -114,14 +114,19 @@ for (let i = 0; i < coll.length; i++) {
 }
 
 var choices = document.getElementsByClassName("choice");
-for (let i = 0; i < choices.length; i++) {
-    choices[i].addEventListener("click", toggleElement);
-    choices[i].addEventListener("mouseover", darken);
-    choices[i].addEventListener("mouseout", lighten);
+for (var choice of choices) {
+    choice.addEventListener("click", toggleElement);
+    // choice.addEventListener("mouseover", darken);
+    // choice.addEventListener("mouseout", lighten);
 }
 
 document.getElementById("reset").addEventListener("click", function() {
     scene.reset();
+    for (var choice of choices) {
+        // choice.style.background = ITEM_OFF;
+        choice.style.textDecoration = "line-through";
+
+    }
 });
 
 function darken(e) {
@@ -159,12 +164,14 @@ function toggleElement(e) {
     if (itemMap[item]) {
         // console.log("app.js - remove");
         itemMap[item] = 0;
-        button.style.background = ITEM_OFF;
+        // button.style.background = ITEM_OFF;
+        button.style.textDecoration = "line-through";
     }
     else {
         // console.log("app.js - add");
         itemMap[item] = 1;
-        button.style.background = ITEM_ON;
+        // button.style.background = ITEM_ON;
+        button.style.textDecoration = "none";
         // toggleChoices(category, item);
     }
     // scene.toggle(category, item);
