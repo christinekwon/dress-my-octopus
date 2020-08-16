@@ -5,13 +5,21 @@ import MODEL from "./Octopus.obj";
 // import MATERIAL from "./Octopus.mtl";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
 import * as THREE from "three";
-import POSX from "./textures/FishPond/posx.jpg";
-import NEGX from "./textures/FishPond/negx.jpg";
-import POSY from "./textures/FishPond/posy.jpg";
-import NEGY from "./textures/FishPond/negy.jpg";
-import POSZ from "./textures/FishPond/posz.jpg";
-import NEGZ from "./textures/FishPond/negz.jpg";
-import WHITE from "./textures/white/white.png";
+// import POSX from "./textures/FishPond/posx.jpg";
+// import NEGX from "./textures/FishPond/negx.jpg";
+// import POSY from "./textures/FishPond/posy.jpg";
+// import NEGY from "./textures/FishPond/negy.jpg";
+// import POSZ from "./textures/FishPond/posz.jpg";
+// import NEGZ from "./textures/FishPond/negz.jpg";
+// import WHITE from "./textures/white/white.png";
+import POSX from "../../scenes/textures/Skybox/posx.jpg";
+import NEGX from "../../scenes/textures/Skybox/negx.jpg";
+import POSY from "../../scenes/textures/Skybox/posy.jpg";
+import NEGY from "../../scenes/textures/Skybox/negy.jpg";
+import POSZ from "../../scenes/textures/Skybox/posz.jpg";
+import NEGZ from "../../scenes/textures/Skybox/negz.jpg";
+
+
 import Tube from "./NewTubeGeometry.js";
 
 class Octopus extends Group {
@@ -28,11 +36,41 @@ class Octopus extends Group {
 	};
   
 	this.name = "OCTOPUS"
+	// var envmap = new THREE.CubeTextureLoader()
+	// 	.load( [
+	// 		POSX, NEGX,
+	// 		POSY, NEGY,
+	// 		POSZ, NEGZ
+	// 	] );
+	// var envmap = new THREE.CubeTextureLoader()
+	// .load( [
+	// 	POSY, POSY,
+	// 	POSY, POSY,
+	// 	POSY, POSY
+	// ] );
 	var material = new THREE.MeshPhongMaterial({
+
+		// color: 0x9883e5,
+		// envMap: envmap,
+		// refractionRatio: 0.1,
+		// specular: 0xffffff,
+		// shininess: 1000
 		color: 0x9883e5,
 		specular: 0xffffff,
 		shininess: 1000
 	});
+
+	// var material = new THREE.MeshStandardMaterial( {
+	// 	color: 0x9883e5,
+	// 	metalness: 1,   // between 0 and 1
+	// 	roughness: 0, // between 0 and 1
+	// 	envMap: envmap,
+	// 	envMapIntensity: 3
+	// } );
+
+	// material.envMap.mapping = THREE.CubeRefractionMapping;
+
+
 
 	const objloader = new OBJLoader();
 	// const mtlLoader = new MTLLoader();
@@ -47,6 +85,8 @@ class Octopus extends Group {
 	// 	});
 
 	// });
+
+
 
 
     objloader.load(MODEL, obj => {

@@ -27,7 +27,7 @@ class Lash extends Group {
 		var material = new THREE.MeshPhongMaterial({
 			color: 0x000000,
 			specular: 0xffffff,
-			shininess: 0
+			shininess: 10
 		});
 	
 		const objloader = new OBJLoader();

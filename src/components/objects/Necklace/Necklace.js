@@ -1,4 +1,4 @@
-import { Group, Scene, RedFormat } from "three";
+import { Group, Scene, RedFormat, TextureLoader } from "three";
 // import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import MODEL from "./necklace.obj";
@@ -6,9 +6,15 @@ import MODEL from "./necklace.obj";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
 import * as THREE from "three";
 import { ResourceTracker } from "../../tracker";
+import POSX from "../../scenes/textures/Skybox/posx.jpg";
+import NEGX from "../../scenes/textures/Skybox/negx.jpg";
+import POSY from "../../scenes/textures/Skybox/posy.jpg";
+import NEGY from "../../scenes/textures/Skybox/negy.jpg";
+import POSZ from "../../scenes/textures/Skybox/posz.jpg";
+import NEGZ from "../../scenes/textures/Skybox/negz.jpg";
 
 class Necklace extends Group {
-	constructor(parent) {
+	constructor(parent, envMap) {
 		// Call parent Group() constructor
 		super();
 
@@ -25,33 +31,25 @@ class Necklace extends Group {
 
 		this.item = "NECKLACE";
 
-		// this.itemMap = {
-		// 	"HEART": [HEART_MAT, HEART_OBJ, 0, -2, 0, 1],
-		// 	"BOW": [BOW_MAT, BOW_OBJ, 0, -2, 0, 1],
-		// 	// "CAP": [HEART_MAT, HEART_OBJ, 0, 1, 0, 1],
-		// 	// "HAT": [HEART_MAT, HEART_OBJ, 0, -5, 0, 1],
-		// 	"BABY": [OCTOPUS_MAT, OCTOPUS_OBJ, 2, -2, -2, 0.3],
-		// 	"NECKLACE": [NECKLACE_MAT, NECKLACE_OBJ, 0, -2, 0, 1],
-		// }
-
-		// this.mat = HEART_MAT;
-		// this.obj = HEART_OBJ;
-		// this.pos = [0, -2, 0];
-		// this.size = 1;
-
-		// red 
+		// var material = new THREE.MeshStandardMaterial( {
+		// 	color: 0xfcd3de,
+		// 	metalness: 1,   // between 0 and 1
+		// 	roughness: 0, // between 0 and 1
+		// 	envMap: envMap,
+		// 	envMapIntensity: 2
+		// } );
 
 		var material = new THREE.MeshPhongMaterial({
 			color: 0xfcd3de,
 			specular: 0xffffff,
-			shininess: 1000
+			shininess: 100
 		});
 	
 		const objloader = new OBJLoader();
 		// const mtlLoader = new MTLLoader();
 		objloader.load(MODEL, obj => {
 			obj.position.set(0, -1.5, 0);
-			obj.rotation.set(0, -Math.PI, 0);
+			obj.rotation.set(0, Math.PI/2, 0);
 
 			for (const child of obj.children) {
 				child.material = material;

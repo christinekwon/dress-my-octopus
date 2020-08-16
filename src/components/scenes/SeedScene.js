@@ -6,13 +6,13 @@ import * as THREE from "three";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
 
 // import { ResourceTracker } from "tracker";
-import POSX from "./textures/Earth/posx.jpg";
-import NEGX from "./textures/Earth/negx.jpg";
-import POSY from "./textures/Earth/posy.jpg";
-import NEGY from "./textures/Earth/negy.jpg";
-import POSZ from "./textures/Earth/posz.jpg";
-import NEGZ from "./textures/Earth/negz.jpg";
-import WHITE from "./textures/White/white.png";
+import POSX from "./textures/Skybox/posx.jpg";
+import NEGX from "./textures/Skybox/negx.jpg";
+import POSY from "./textures/Skybox/posy.jpg";
+import NEGY from "./textures/Skybox/negy.jpg";
+import POSZ from "./textures/Skybox/posz.jpg";
+import NEGZ from "./textures/Skybox/negz.jpg";
+// import WHITE from "./textures/White/white.png";
 
 class SeedScene extends Scene {
     constructor() {
@@ -29,10 +29,17 @@ class SeedScene extends Scene {
             twirl: 0,
         };
 
+        var envMap = new THREE.CubeTextureLoader()
+        .load( [
+            POSX, NEGX,
+            POSY, NEGY,
+            POSZ, NEGZ
+        ] );
+
         this.objects = {
-            "HEART": new Heart(this),
+            "HEART": new Heart(this, envMap),
             "BOW": new Bow(this),
-            "NECKLACE": new Necklace(this),
+            "NECKLACE": new Necklace(this, envMap),
             "BABY": new Baby(this),
             "LASH": new Lash(this),
             "LIPS": new Lips(this),
@@ -42,6 +49,7 @@ class SeedScene extends Scene {
         // }
         
 
+
         // this.add(this.objects["HEART"]);
         // this.add(this.objects["BOW"]);
         // this.add(this.objects.heart);
@@ -50,7 +58,8 @@ class SeedScene extends Scene {
             this.add(this.objects[obj]);
         }
         // Set background to a nice color
-        this.background = new Color(0xffcccc);
+        // this.background = new Color(0xffcccc);
+
 
         const octopus = new Octopus(this);
         this.octopus = octopus;
@@ -126,7 +135,7 @@ class SeedScene extends Scene {
 
     spin() {
 		// Add a simple twirl
-		this.state.twirl += 12 * Math.PI;
+		this.state.twirl += 6 * Math.PI;
 
 		// Use timing library for more precice "bounce" animation
 		// TweenJS guide: http://learningthreejs.com/blog/2011/08/17/tweenjs-for-smooth-animation/

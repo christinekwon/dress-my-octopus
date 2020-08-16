@@ -41,7 +41,8 @@ var itemMap = {
 const scene = new SeedScene();
 const camera = new PerspectiveCamera();
 const renderer = new WebGLRenderer({ antialias: true });
-
+// renderer.gammaInput = true;
+// renderer.gammaOutput = true;
 // Set up camera
 camera.position.set(0, 2, -10);
 camera.lookAt(new Vector3(0, 0, 0));
