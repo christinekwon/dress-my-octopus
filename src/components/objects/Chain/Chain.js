@@ -14,7 +14,7 @@ import POSZ from "../../scenes/textures/Skybox/posz.jpg";
 import NEGZ from "../../scenes/textures/Skybox/negz.jpg";
 
 class Chain extends Group {
-	constructor(parent, envMap) {
+	constructor(parent) {
 		// Call parent Group() constructor
 		super();
 
@@ -31,12 +31,25 @@ class Chain extends Group {
 
 		this.item = "CHAIN";
 
+		let envMap = new THREE.CubeTextureLoader()
+        .load( [
+            POSX, NEGX,
+            POSY, NEGY,
+            POSZ, NEGZ
+		] );
+		
 		var material = new THREE.MeshStandardMaterial( {
-			color: 0xffcc00,
-			metalness: 1,   // between 0 and 1
-			roughness: 0, // between 0 and 1
+			// color: 0xfcc742,
+			// emissive: 0xad6a0e,
+			emissive: 0x4f3006,
+			specular: 0xffffff,
+			metalness: 1,
+			roughness: 0,
+			color: 0xffc311,
+			// metalness: 1,   // between 0 and 1
+			// roughness: 0.5, // between 0 and 1
 			envMap: envMap,
-			envMapIntensity: 2
+			envMapIntensity: 1.5
 		} );
 
 		var material2 = new THREE.MeshPhongMaterial({
@@ -48,7 +61,7 @@ class Chain extends Group {
 		const objloader = new OBJLoader();
 		// const mtlLoader = new MTLLoader();
 		objloader.load(MODEL, obj => {
-			obj.position.set(0, -1.5, 0);
+			obj.position.set(0.05, -1.5, 0);
 			obj.rotation.set(0, Math.PI, 0);
 
 			// for (const child of obj.children) {

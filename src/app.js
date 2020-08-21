@@ -9,6 +9,7 @@
 import { WebGLRenderer, PerspectiveCamera, Vector3, Color } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { SeedScene } from 'scenes';
+// import CURSOR from './cursor.png';
 
 var FLOWER = 0;
 const HEAD = "head";
@@ -35,6 +36,9 @@ var itemMap = {
     "HAT": 0,
     "BABY": 0,
     "NECKLACE": 0,
+    "CHAIN": 0,
+    "LASH": 0,
+    "LIPS": 0,
 }
 
 // Initialize core ThreeJS components
@@ -44,10 +48,10 @@ const renderer = new WebGLRenderer({ antialias: true });
 // renderer.gammaInput = true;
 // renderer.gammaOutput = true;
 // Set up camera
-camera.position.set(0, 2, -10);
+camera.position.set(0, 0, -15);
 camera.lookAt(new Vector3(0, 0, 0));
 
-scene.background = BACKGROUND;
+// scene.background = BACKGROUND;
 
 // Set up renderer, canvas, and minor CSS adjustments
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -99,6 +103,8 @@ window.addEventListener('resize', windowResizeHandler, false);
 //     }
 // }
 
+// document.body.style.cursor = CURSOR;
+
 var coll = document.getElementsByClassName("collapsible");
 
 for (let i = 0; i < coll.length; i++) {
@@ -125,7 +131,9 @@ document.getElementById("reset").addEventListener("click", function() {
     for (var choice of choices) {
         // choice.style.background = ITEM_OFF;
         choice.style.textDecoration = "line-through";
-
+    }
+    for (let item in itemMap) {
+        itemMap[item] = 0;
     }
 });
 

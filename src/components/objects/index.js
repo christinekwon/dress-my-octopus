@@ -1,6 +1,7 @@
 export * from './Flower';
 export * from './Land';
 export * from './Octopus';
+export * from './Bubble';
 // export * from './Head';
 export * from './Heart';
 export * from './Bow';

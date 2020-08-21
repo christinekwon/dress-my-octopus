@@ -32,7 +32,7 @@ class Lips extends Group {
 		});
 
 		var material = new THREE.MeshPhongMaterial({
-			color: 0x5c22fa,
+			color: 0x611d91,
 			specular: 0xffffff,
 			shininess: 100
 		});
