@@ -25,6 +25,23 @@ class Bubble extends Group {
   
 	this.name = "BUBBLE"  
 
+	let colors = [
+		0xfaa4bd, //lite pink
+		0xff99c8,  // pink
+		0xda9f93, // muted pink
+		0xfcab64, // orange
+		0xede7b1, // yellow
+		// 0xffbc0a, // cheese
+		0x7dce82, // green
+		// 0xc3f73a, // lime
+		0x30f2f2, // blue
+		0xa1fcdf, // aqua
+		0x7699d4, // periwinkle
+		0xbcb6ff, // purple
+		0x8d86c9, // lavender
+	];
+	let color = colors[Math.floor(Math.random() * colors.length)];
+	// color= 0xbcb6ff;
 	let geometry = new THREE.SphereGeometry( radius, 32, 32 );
 	// let material = new THREE.MeshPhongMaterial({
 	// 	color: 0xff99c8,
@@ -39,12 +56,12 @@ class Bubble extends Group {
 
 
 	var material = new THREE.MeshStandardMaterial( {
-		color: 0xff99c8,
-		emissive: 0x007777,
+		color: color,
+		emissive: 0x555555,
 		metalness: 1,   // between 0 and 1
 		roughness: 0, // between 0 and 1
 		envMap: metalMap,
-		envMapIntensity: 3
+		envMapIntensity: 2
 	} );
 
 	let sphere = new THREE.Mesh( geometry, material );
