@@ -10,3 +10,6 @@ export * from './Baby';
 export * from './Lash';
 export * from './Lips';
 export * from './Chain';
+export * from './Mask';
+export * from './Sunglasses';
+export * from './Earrings';

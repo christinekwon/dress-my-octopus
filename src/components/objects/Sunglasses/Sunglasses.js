@@ -1,14 +1,14 @@
 import { Group, Scene, RedFormat } from "three";
-// import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
+import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
-import MODEL from "./baby.obj";
+import MODEL from "./sunglasses.obj";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
 import * as THREE from "three";
 import { ResourceTracker } from "../../tracker";
-import STRIPES from "../textures/green-stripes.png";
+import BUTTERFLY from "../textures/butterfly.png";
 
-class Baby extends Group {
-	constructor(parent) {
+class Sunglasses extends Group {
+	constructor(parent, envMap) {
 		// Call parent Group() constructor
 		super();
 
@@ -23,56 +23,44 @@ class Baby extends Group {
 		this.tracker = new ResourceTracker();
 		const track = this.tracker.track.bind(this.tracker);
 
-		this.item = "BABY";
+		this.item = "SUNGLASSES";
 
-		var material1 = new THREE.MeshPhongMaterial({
-			color: 0x85cb33,
-			specular: 0xffffff,
-			shininess: 1000
-		});
-		var material2 = new THREE.MeshPhongMaterial({
-			// color: 0xff90b3,
-			color: 0xf397d6,
-			specular: 0xffffff,
-			shininess: 1000
-		});
-		var material3 = new THREE.MeshPhongMaterial({
-			color: 0xfdc5f5,
-			specular: 0xffffff,
-			shininess: 1000
-		});
-		var material4 = new THREE.MeshPhongMaterial({
-			// color: 0xb8336a,
-			color: 0xf42272,
-			specular: 0xffffff,
-			shininess: 1000
-		});
+		// let lensMaterial = new THREE.MeshPhongMaterial({
+		// 	color: 0xff4466,
 
+		// 	// color: 0xffffff,
+		// 	envMap: envMap,
+		// 	refractionRatio: 0.7,
+		// 	shininess: 1000,
+        // });
+        
+        var lensMaterial = new THREE.MeshStandardMaterial( {
+            emissive: 0xea526f,
+            specular: 0xffffff,
+            metalness: 1,
+            roughness: 0,
+            color: 0xf9ada0,
+            envMap: envMap,
+            envMapIntensity: 1.5
+        } );
+	
 
+        var goldMaterial = new THREE.MeshPhongMaterial( {
+            // color: 0xfcc742,
+            // emissive: 0xad6a0e,
+            color: 0xffffff,
+			shininess: 1000,
+        } );
 	
 		const objloader = new OBJLoader();
 		// const mtlLoader = new MTLLoader();
 		objloader.load(MODEL, obj => {
-			obj.position.set(2, -1, -2);
-			obj.scale.multiplyScalar(0.3);
+			obj.position.set(0, -1.2, -0.1);
 			obj.rotation.set(0, -Math.PI, 0);
 
-		// 	let textureloader = new THREE.TextureLoader();
-		// 	textureloader.load(STRIPES,function(tx){
-		// 	 let stripeMaterial = new THREE.MeshPhongMaterial({
-		// 		 map: tx,
-		// 		wireframe: false,
-		// 		specular: 0xffffff,
-		// 		shininess: 1000
-		// 	 });
-		// 	 obj.children[0].material = stripeMaterial;
-		//  });
-
-			obj.children[0].material = material1;
-			obj.children[1].material = material2;
-			obj.children[2].material = material3;
-			obj.children[3].material = material4;
-
+			obj.children[0].material = lensMaterial;
+			obj.children[1].material = lensMaterial;
+			obj.children[2].material = goldMaterial;
 			
 			obj.matrixAutoUpdate = false;
 			obj.updateMatrix();
@@ -88,20 +76,6 @@ class Baby extends Group {
 		this.visible = false;
 
 	}
-
-	// addItem(self) {
-	// 	const mtlLoader = new MTLLoader();
-	// 	mtlLoader.load(HEART_MAT, function ( materials ) {
-	// 		var objLoader = new OBJLoader();
-	// 		objLoader.setMaterials( materials );//Set the materials for the objects using OBJLoader's setMaterials method
-	// 		objLoader.load( HEART_OBJ, object => {
-	// 			object.scale.multiplyScalar(self.size); 
-	// 			object.position.set( self.pos[0], self.pos[1], self.pos[2] ); 
-	// 			object.rotation.set( 0, -Math.PI, 0 ); 
-	// 			self.add( object );
-	// 		});
-	// 	});
-	// }
 
 	dispose() {
 		// console.log("Head.js - disposed");
@@ -145,4 +119,4 @@ class Baby extends Group {
 	}
 }
 
-export default Baby;
+export default Sunglasses;

@@ -33,8 +33,11 @@ class Lash extends Group {
 		const objloader = new OBJLoader();
 		// const mtlLoader = new MTLLoader();
 		objloader.load(MODEL, obj => {
-			obj.position.set(0, -1.5, 0.1);
+			// scale = 1
+			// obj.position.set(0, -1.5, 0.1);
+			obj.position.set(0, -0.9, -0.3);
 			obj.rotation.set(0, -Math.PI, 0);
+			obj.scale.multiplyScalar(0.8);
 
 			obj.children[0].material = material;
 			
@@ -44,13 +47,11 @@ class Lash extends Group {
 			// uncomment to add octopus
 			this.add(obj);
 			this.obj = obj;
-
 		});
 
 		// this.addItem(this);
 		parent.addToUpdateList(this);
-		this.visible= false;
-
+		this.visible = false;
 	}
 
 	// addItem(self) {

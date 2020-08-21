@@ -79,18 +79,19 @@ class Bubble extends Group {
 
   spin() {
 
+	// 1.002 0.998 200
 	}
 	update(timeStamp) {
 		if (this.state.grow) {
 			this.state.count++;
-			this.sphere.scale.multiplyScalar(1.002);
+			this.sphere.scale.multiplyScalar(1.003);
 			if (this.state.count == 200) {
 				this.state.grow = 0;
 			}
 		}
 		else {
 			this.state.count--;
-			this.sphere.scale.multiplyScalar(0.998);
+			this.sphere.scale.multiplyScalar(0.997);
 			if (this.state.count == 0) {
 				this.state.grow = 1;
 			}

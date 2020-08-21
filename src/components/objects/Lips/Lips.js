@@ -50,7 +50,7 @@ class Lips extends Group {
 			// obj.scale.multiplyScalar(0.5);
 
 			// med lips
-			obj.position.set(0, -1, -0.3);
+			obj.position.set(0, -1, -0.2);
 			obj.rotation.set(0, -Math.PI, 0);
 			obj.scale.multiplyScalar(0.75);
 

@@ -1,6 +1,6 @@
 import * as Dat from 'dat.gui';
 import { Scene, Color } from 'three';
-import { Octopus, Heart, Bow, Necklace, Chain, Baby, Lash, Lips, Bubble } from 'objects';
+import { Octopus, Heart, Bow, Necklace, Chain, Baby, Lash, Lips, Mask, Sunglasses, Earrings, Bubble } from 'objects';
 import { BasicLights } from 'lights';
 import * as THREE from "three";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
@@ -54,6 +54,9 @@ class SeedScene extends Scene {
             "BABY": new Baby(this),
             "LASH": new Lash(this),
             "LIPS": new Lips(this),
+            "MASK": new Mask(this),
+            "SUNGLASSES": new Sunglasses(this, metalMap),
+            "EARRINGS": new Earrings(this),
         }
 
         for (var obj in this.objects) {
@@ -61,26 +64,32 @@ class SeedScene extends Scene {
         }
 
         const bubbles = [];
-        bubbles.push(new Bubble(this, metalMap, 10, -3, 3, 0.4, 1));
-        bubbles.push(new Bubble(this, metalMap, 9, 2, 5, 0.1, 0));
-        bubbles.push(new Bubble(this, metalMap, 8, -1, 7, 0.3, 1));
+        bubbles.push(new Bubble(this, metalMap, 12, -8, 3, 0.3, 1));
+        bubbles.push(new Bubble(this, metalMap, 11, 1, 1, 0.6, 0));
+        bubbles.push(new Bubble(this, metalMap, 10, -3, 5, 0.3, 1));
+        bubbles.push(new Bubble(this, metalMap, 9, 2, 2, 0.1, 0));
+        bubbles.push(new Bubble(this, metalMap, 9, 7, 7, 0.8, 0));
+        bubbles.push(new Bubble(this, metalMap, 8, -1, 7, 0.2, 1));
         bubbles.push(new Bubble(this, metalMap, 7, 4, 9, 0.6, 0));
-        bubbles.push(new Bubble(this, metalMap, 6, -4, 4, 0.1, 1));
-        bubbles.push(new Bubble(this, metalMap, 5, 1, 6, 0.2, 0));
-        bubbles.push(new Bubble(this, metalMap, 4, 3, 8, 0.5, 1));
+        bubbles.push(new Bubble(this, metalMap, 6, -4, 0, 0.4, 1));
+        bubbles.push(new Bubble(this, metalMap, 5, -9, 9, 0.9, 0));
+        bubbles.push(new Bubble(this, metalMap, 4, 6, 8, 0.5, 1));
         bubbles.push(new Bubble(this, metalMap, 3, -1, 10, 0.3, 0));
         bubbles.push(new Bubble(this, metalMap, 2, 4, 3, 0.1, 1));
-        bubbles.push(new Bubble(this, metalMap, 1, -5, 5, 0.7, 0));
-        bubbles.push(new Bubble(this, metalMap, 0, -8, 7, 0.2, 1));
-        bubbles.push(new Bubble(this, metalMap, -1, -4, 9, 0.5, 0));
-        bubbles.push(new Bubble(this, metalMap, -2, -3, 4, 0.1, 1));
-        bubbles.push(new Bubble(this, metalMap, -3, -6, 6, 0.4, 0));
-        bubbles.push(new Bubble(this, metalMap, -4, -1, 8, 0.2, 1));
+        bubbles.push(new Bubble(this, metalMap, 1, -6, 5, 0.4, 0));
+        bubbles.push(new Bubble(this, metalMap, 0, -10, 7, 0.2, 1));
+        bubbles.push(new Bubble(this, metalMap, 0, 7, 4, 0.4, 1));
+        bubbles.push(new Bubble(this, metalMap, -1, 5, 9, 0.3, 0));
+        bubbles.push(new Bubble(this, metalMap, -2, 6, 4, 0.1, 1));
+        bubbles.push(new Bubble(this, metalMap, -3, -9, 6, 0.4, 0));
+        bubbles.push(new Bubble(this, metalMap, -4, -1, 3, 0.2, 1));
         bubbles.push(new Bubble(this, metalMap, -5, 4, 10, 0.6, 0));
-        bubbles.push(new Bubble(this, metalMap, -7, -1, 5, 0.3, 0));
-        bubbles.push(new Bubble(this, metalMap, -8, 2, 7, 0.1, 1));
-        bubbles.push(new Bubble(this, metalMap, -9, -6, 9, 0.5, 0));
+        bubbles.push(new Bubble(this, metalMap, -7, -2, 5, 0.7, 0));
+        bubbles.push(new Bubble(this, metalMap, -8, 6, 7, 0.3, 1));
+        bubbles.push(new Bubble(this, metalMap, -9, -8, 4, 0.5, 0));
         bubbles.push(new Bubble(this, metalMap, -10, 1, 11, 0.3, 1));
+        bubbles.push(new Bubble(this, metalMap, -11, -3, 2, 0.9, 0));
+        bubbles.push(new Bubble(this, metalMap, -12, 5, 4, 0.4, 1));
 
         for (let bubble of bubbles) {
             this.add(bubble);

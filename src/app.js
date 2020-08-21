@@ -39,6 +39,9 @@ var itemMap = {
     "CHAIN": 0,
     "LASH": 0,
     "LIPS": 0,
+    "MASK": 0,
+    "SUNGLASSES": 0,
+    "EARRINGS": 0,
 }
 
 // Initialize core ThreeJS components
@@ -48,7 +51,7 @@ const renderer = new WebGLRenderer({ antialias: true });
 // renderer.gammaInput = true;
 // renderer.gammaOutput = true;
 // Set up camera
-camera.position.set(0, 0, -15);
+camera.position.set(0, 2, -15);
 camera.lookAt(new Vector3(0, 0, 0));
 
 // scene.background = BACKGROUND;
