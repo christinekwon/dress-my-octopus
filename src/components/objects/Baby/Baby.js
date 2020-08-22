@@ -8,7 +8,7 @@ import { ResourceTracker } from "../../tracker";
 import STRIPES from "../textures/green-stripes.png";
 
 class Baby extends Group {
-	constructor(parent) {
+	constructor(parent, id) {
 		// Call parent Group() constructor
 		super();
 
@@ -24,36 +24,69 @@ class Baby extends Group {
 		const track = this.tracker.track.bind(this.tracker);
 
 		this.item = "BABY";
+		let material1, material2, material3, material4, x, y, z;
 
-		var material1 = new THREE.MeshPhongMaterial({
-			color: 0x85cb33,
-			specular: 0xffffff,
-			shininess: 1000
-		});
-		var material2 = new THREE.MeshPhongMaterial({
-			// color: 0xff90b3,
-			color: 0xf397d6,
-			specular: 0xffffff,
-			shininess: 1000
-		});
-		var material3 = new THREE.MeshPhongMaterial({
-			color: 0xfdc5f5,
-			specular: 0xffffff,
-			shininess: 1000
-		});
-		var material4 = new THREE.MeshPhongMaterial({
-			// color: 0xb8336a,
-			color: 0xf42272,
-			specular: 0xffffff,
-			shininess: 1000
-		});
+		if (id == 0) {
+			material1 = new THREE.MeshPhongMaterial({
+				color: 0x79dd69,
+				// color: 0x7da1sd8,
+				specular: 0xffffff,
+				shininess: 1000
+			});
+			material2 = new THREE.MeshPhongMaterial({
+				// color: 0xff90b3,
+				color: 0xf397d6,
+				specular: 0xffffff,
+				shininess: 1000
+			});
+			material3 = new THREE.MeshPhongMaterial({
+				color: 0xfdc5f5,
+				specular: 0xffffff,
+				shininess: 1000
+			});
+			material4 = new THREE.MeshPhongMaterial({
+				// color: 0xb8336a,
+				color: 0xff58ab,
+				specular: 0xffffff,
+				shininess: 1000
+			});
+			x = 3;
+			y = -1;
+			z = -2;
+		}
+		else if (id == 1) {
+			material1 = new THREE.MeshPhongMaterial({
+				color: 0xf49097,
+				specular: 0xffffff,
+				shininess: 1000
+			});
+			material2 = new THREE.MeshPhongMaterial({
+				// color: 0xf9b5ac,
+				color: 0x66c3e8,
+				specular: 0xffffff,
+				shininess: 1000
+			});
+			material3 = new THREE.MeshPhongMaterial({
+				// color: 0xffee93,
+				color: 0xb0d8e8,
+				specular: 0xffffff,
+				shininess: 1000
+			});
+			material4 = new THREE.MeshPhongMaterial({
+				// color: 0xff8c42,
+				color: 0x2a8dce,
+				specular: 0xffffff,
+				shininess: 1000
+			});
+			x = -3;
+			y = -1;
+			z = -2;
+		}
 
-
-	
 		const objloader = new OBJLoader();
 		// const mtlLoader = new MTLLoader();
 		objloader.load(MODEL, obj => {
-			obj.position.set(2, -1, -2);
+			obj.position.set(x, y, z);
 			obj.scale.multiplyScalar(0.3);
 			obj.rotation.set(0, -Math.PI, 0);
 
@@ -86,7 +119,6 @@ class Baby extends Group {
 		// this.addItem(this);
 		parent.addToUpdateList(this);
 		this.visible = false;
-
 	}
 
 	// addItem(self) {

@@ -22,7 +22,7 @@ class SeedScene extends Scene {
 
         // Init state
         this.state = {
-            gui: new Dat.GUI(), // Create GUI for scene
+            // gui: new Dat.GUI(), // Create GUI for scene
             rotationSpeed: 1,
             updateList: [],
             bob: true,
@@ -51,7 +51,8 @@ class SeedScene extends Scene {
             "BOW": new Bow(this),
             "NECKLACE": new Necklace(this, envMap),
             "CHAIN": new Chain(this),
-            "BABY": new Baby(this),
+            "BABY0": new Baby(this, 0),
+            "BABY1": new Baby(this, 1),
             "LASH": new Lash(this),
             "LIPS": new Lips(this),
             "MASK": new Mask(this),
@@ -108,8 +109,8 @@ class SeedScene extends Scene {
         this.add(octopus, lights);
 
         // Populate GUI
-        this.state.gui.add(this.state, 'bob');
-        this.state.gui.add(this.state, 'spin');
+        // this.state.gui.add(this.state, 'bob');
+        // this.state.gui.add(this.state, 'spin');
         // this.state.gui.add(this.state, 'rotationSpeed', -30, 30);
     }
 

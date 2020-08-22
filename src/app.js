@@ -34,7 +34,8 @@ var itemMap = {
     "BOW": 0,
     "CAP": 0,
     "HAT": 0,
-    "BABY": 0,
+    "BABY0": 0,
+    "BABY1": 0,
     "NECKLACE": 0,
     "CHAIN": 0,
     "LASH": 0,
@@ -128,6 +129,10 @@ for (var choice of choices) {
     // choice.addEventListener("mouseover", darken);
     // choice.addEventListener("mouseout", lighten);
 }
+
+document.getElementById("spin").addEventListener("click", function() {
+    scene.spin();
+});
 
 document.getElementById("reset").addEventListener("click", function() {
     scene.reset();

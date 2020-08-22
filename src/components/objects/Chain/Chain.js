@@ -41,15 +41,21 @@ class Chain extends Group {
 		var material = new THREE.MeshStandardMaterial( {
 			// color: 0xfcc742,
 			// emissive: 0xad6a0e,
+			// gold
+			color: 0xffc311,
 			emissive: 0x4f3006,
-			specular: 0xffffff,
+			// pink
+			// color: 0xffcad4,
+			// emissive: 0xef798a,
+			//silver
+			// color: 0xffffff,
+			// emissive: 0x444444,
 			metalness: 1,
 			roughness: 0,
-			color: 0xffc311,
 			// metalness: 1,   // between 0 and 1
 			// roughness: 0.5, // between 0 and 1
 			envMap: envMap,
-			envMapIntensity: 1.5
+			envMapIntensity: 2
 		} );
 
 		var material2 = new THREE.MeshPhongMaterial({

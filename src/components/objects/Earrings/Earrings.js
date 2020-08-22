@@ -32,9 +32,9 @@ class Earrings extends Group {
 	});
 
 	let sphere1 = new THREE.Mesh( geometry, material );
-	sphere1.position.set(1.5, 0, 0);
+	sphere1.position.set(1.45, 0, -0.5);
 	let sphere2 = new THREE.Mesh( geometry, material );
-	sphere2.position.set(-1.5, 0, 0);
+	sphere2.position.set(-1.45, 0, -0.5);
 	this.add(sphere1);
 	this.add(sphere2);
     parent.addToUpdateList(this);

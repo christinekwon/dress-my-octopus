@@ -24,15 +24,9 @@ class Mask extends Group {
 		const track = this.tracker.track.bind(this.tracker);
 
 		this.item = "MASK";
-		// red 
-		var redMaterial = new THREE.MeshPhongMaterial({
-			color: 0xff4466,
-			specular: 0xffffff,
-			shininess: 100
-		});
 
-		var material = new THREE.MeshPhongMaterial({
-			color: 0xe39ec1,
+		var blueMaterial = new THREE.MeshPhongMaterial({
+			color: 0x90def3,
 			specular: 0xffffff,
 			shininess: 100
 		});
@@ -46,15 +40,18 @@ class Mask extends Group {
 			textureloader.load(BUTTERFLY,function(tx){
 				tx.offset.set(-0.3, 0.5);
 				tx.repeat.set(1.5, 1.5);
-			 let stripeMaterial = new THREE.MeshPhongMaterial({
-				 map: tx,
-				wireframe: false,
-				specular: 0xffffff,
-				shininess: 1000,
-			 });
-			 obj.children[0].material = stripeMaterial;
-		 });
+				let stripeMaterial = new THREE.MeshPhongMaterial({
+					map: tx,
+					wireframe: false,
+					specular: 0xffffff,
+					shininess: 1000,
+				});
+				obj.children[0].material = stripeMaterial;
+			});
 			
+			obj.children[1].material = blueMaterial;
+			obj.children[2].material = blueMaterial;
+			obj.children[3].material = blueMaterial;
 			obj.matrixAutoUpdate = false;
 			obj.updateMatrix();
 			
@@ -67,7 +64,6 @@ class Mask extends Group {
 		// this.addItem(this);
 		parent.addToUpdateList(this);
 		this.visible = false;
-
 	}
 
 	dispose() {

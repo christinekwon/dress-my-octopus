@@ -39,7 +39,12 @@ class Bow extends Group {
 		const objloader = new OBJLoader();
 		// const mtlLoader = new MTLLoader();
 		objloader.load(MODEL, obj => {
-			obj.position.set(0, -1.5, 0);
+			// scale = 1
+			// obj.position.set(0, -1.5, 0);
+			// obj.rotation.set(0, -Math.PI, 0);
+
+			obj.scale.multiplyScalar(0.7)
+			obj.position.set(-0.3, -0.5, -0.3);
 			obj.rotation.set(0, -Math.PI, 0);
 
 			obj.children[0].material = material;
@@ -55,8 +60,7 @@ class Bow extends Group {
 
 		// this.addItem(this);
 		parent.addToUpdateList(this);
-		this.visible= false;
-
+		this.visible = false;
 	}
 
 	// addItem(self) {

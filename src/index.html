@@ -76,10 +76,11 @@
         background-color:rgba(255, 255, 255, 0.2);
     }
 
-    #reset {
+    .butt {
         font-family: 'Roboto Mono', monospace;
         width: 150px;
         padding: 10px 15px 12px 15px;
+        margin-bottom: 25px;
         background-color: rgba(255, 255, 255, 0.2);
         /* border:2px solid rgb(0, 210, 189); */
         border: none;
@@ -89,6 +90,9 @@
 
         font-size: 16px;
         font-weight: 500;
+    }
+    #spin:hover {
+        background-color: rgba(20, 186, 156, 0.5);
     }
     #reset:hover {
         background-color: rgba(255, 81, 113, 0.5);
@@ -152,7 +156,7 @@
             <div class="content">
                 <button class="head choice" id="lash" value="LASH">lashes</button>
                 <button class="head choice" id="lips" value="LIPS">lips</button>
-                
+
                 <button class="head choice" id="heart" value="HEART">hearts</button>
                 <button class="head choice" id="bow" value="BOW">bow</button>
                 <button class="head choice" id="sunglasses" value="SUNGLASSES">sunglasses</button>
@@ -162,7 +166,8 @@
                 <button class="head choice" id="earrings" value="EARRINGS">earrings</button>
 
                 <button class="head choice" id="mask" value="MASK">mask</button>
-                <button class="head choice" id="baby" value="BABY">baby</button>
+                <button class="head choice" id="bab01" value="BABY0">baby 0</button>
+                <button class="head choice" id="baby1" value="BABY1">baby 1</button>
 
             </div>
         </div>
@@ -183,7 +188,9 @@
                 <button class="acc choice" id="glasses" value="GLASSES">glasses</button>
             </div>
         </div> -->
-        <button id="reset">&#8280; reset &#8280;</button>
+        <button class="butt" id="spin">&#8280; spin &#8280;</button>
+        <br>
+        <button class="butt" id="reset">&#8280; reset &#8280;</button>
     </div>
 </body>
 

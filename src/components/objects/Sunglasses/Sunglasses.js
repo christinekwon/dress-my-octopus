@@ -35,21 +35,27 @@ class Sunglasses extends Group {
         // });
         
         var lensMaterial = new THREE.MeshStandardMaterial( {
-            emissive: 0xea526f,
-            specular: 0xffffff,
+			// color: 0xffbe86,
+			color: 0xffcad4,
+            emissive: 0xc08497,
             metalness: 1,
             roughness: 0,
-            color: 0xf9ada0,
+            // color: 0xf9ada0,
             envMap: envMap,
-            envMapIntensity: 1.5
+            envMapIntensity: 1
         } );
 	
 
-        var goldMaterial = new THREE.MeshPhongMaterial( {
-            // color: 0xfcc742,
-            // emissive: 0xad6a0e,
-            color: 0xffffff,
-			shininess: 1000,
+        var bridgeMaterial = new THREE.MeshStandardMaterial( {
+            color: 0xfcc742,
+			emissive: 0xad6a0e,
+			// color: 0xffcad4,
+            // emissive: 0xc08497,
+			// color: 0xffffff,
+			metalness: 1,
+            roughness: 0,
+			envMap: envMap,
+            envMapIntensity: 2
         } );
 	
 		const objloader = new OBJLoader();
@@ -59,8 +65,8 @@ class Sunglasses extends Group {
 			obj.rotation.set(0, -Math.PI, 0);
 
 			obj.children[0].material = lensMaterial;
-			obj.children[1].material = lensMaterial;
-			obj.children[2].material = goldMaterial;
+			obj.children[1].material = bridgeMaterial;
+			obj.children[2].material = lensMaterial;
 			
 			obj.matrixAutoUpdate = false;
 			obj.updateMatrix();
@@ -74,7 +80,6 @@ class Sunglasses extends Group {
 		// this.addItem(this);
 		parent.addToUpdateList(this);
 		this.visible = false;
-
 	}
 
 	dispose() {
