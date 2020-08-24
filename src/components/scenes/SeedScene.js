@@ -1,6 +1,6 @@
 import * as Dat from 'dat.gui';
 import { Scene, Color } from 'three';
-import { Octopus, Heart, Bow, Necklace, Chain, Baby, Lash, Lips, Mask, Sunglasses, Earrings, Bubble } from 'objects';
+import { Octopus, Heart, Bow, Necklace, Chain, Baby, Lash, Lips, Mask, Sunglasses, Earrings, Purse, Bubble } from 'objects';
 import { BasicLights } from 'lights';
 import * as THREE from "three";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
@@ -57,7 +57,8 @@ class SeedScene extends Scene {
             "LIPS": new Lips(this),
             "MASK": new Mask(this),
             "SUNGLASSES": new Sunglasses(this, metalMap),
-            "EARRINGS": new Earrings(this),
+            "EARRINGS": new Earrings(this, metalMap),
+            "PURSE": new Purse(this, metalMap),
         }
 
         for (var obj in this.objects) {

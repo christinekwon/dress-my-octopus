@@ -61,8 +61,11 @@ class Sunglasses extends Group {
 		const objloader = new OBJLoader();
 		// const mtlLoader = new MTLLoader();
 		objloader.load(MODEL, obj => {
-			obj.position.set(0, -1.2, -0.1);
+			// scale = 1
+			// obj.position.set(0, -1.2, -0.1);
+			obj.position.set(0, -2, 0.4);
 			obj.rotation.set(0, -Math.PI, 0);
+			obj.scale.multiplyScalar(1.3);
 
 			obj.children[0].material = lensMaterial;
 			obj.children[1].material = bridgeMaterial;

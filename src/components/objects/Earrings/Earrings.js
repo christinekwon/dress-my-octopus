@@ -9,7 +9,7 @@ import * as THREE from "three";
 // import NEGZ from "../../scenes/textures/Skybox/negz.jpg";
 
 class Earrings extends Group {
-  constructor(parent, metalMap, x, y, z, radius, grow) {
+  constructor(parent, envMap) {
     // Call parent Group() constructor
 	super();
 
@@ -23,18 +23,30 @@ class Earrings extends Group {
   
 	this.name = "EARRINGS"  
 
-	let geometry = new THREE.SphereGeometry( 0.1, 32, 32 );
+	let geometry = new THREE.SphereGeometry( 0.15, 32, 32 );
 
+	// pearl
 	let material = new THREE.MeshPhongMaterial({
 		color: 0xfcd3de,
 		specular: 0xffffff,
-		shininess: 100
+		shininess: 1000
 	});
 
+	// gold
+	// let material = new THREE.MeshStandardMaterial( {
+	// 	color: 0xffc311,
+	// 	emissive: 0x4f3006,
+	// 	metalness: 1,
+	// 	roughness: 0,
+	// 	envMap: envMap,
+	// 	envMapIntensity: 2
+	// } );
+
+
 	let sphere1 = new THREE.Mesh( geometry, material );
-	sphere1.position.set(1.45, 0, -0.5);
+	sphere1.position.set(1.5, 0, -0.5);
 	let sphere2 = new THREE.Mesh( geometry, material );
-	sphere2.position.set(-1.45, 0, -0.5);
+	sphere2.position.set(-1.5, 0, -0.5);
 	this.add(sphere1);
 	this.add(sphere2);
     parent.addToUpdateList(this);

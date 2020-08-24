@@ -1,14 +1,14 @@
 import { Group, Scene, RedFormat } from "three";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
-import MODEL from "./mask.obj";
+import MODEL from "./purse.obj";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
 import * as THREE from "three";
 import { ResourceTracker } from "../../tracker";
 import BUTTERFLY from "../textures/butterfly.png";
 
-class Mask extends Group {
-	constructor(parent) {
+class Purse extends Group {
+	constructor(parent, envMap) {
 		// Call parent Group() constructor
 		super();
 
@@ -23,38 +23,52 @@ class Mask extends Group {
 		this.tracker = new ResourceTracker();
 		const track = this.tracker.track.bind(this.tracker);
 
-		this.item = "MASK";
+		this.item = "PURSE";
 
-		var blueMaterial = new THREE.MeshPhongMaterial({
-			color: 0x90def3,
-			specular: 0xffffff,
-			shininess: 100
-		});
+		// let bagMaterial = new THREE.MeshPhongMaterial({
+		// 	color: 0xff4466,
+
+		// 	// color: 0xffffff,
+		// 	envMap: envMap,
+		// 	refractionRatio: 0.7,
+		// 	shininess: 100,
+        // });
+        
+        var bagMaterial = new THREE.MeshStandardMaterial( {
+			// color: 0xffbe86,
+			color: 0xffcad4,
+			emissive: 0xff4466,
+			// color: 0x7cb0da,
+			// emissive: 0x314cb6,
+            metalness: 1,
+            roughness: 0,
+            // color: 0xf9ada0,
+            envMap: envMap,
+            envMapIntensity: 1
+        } );
+	
+
+        var letterMaterial = new THREE.MeshStandardMaterial( {
+			color: 0xffc311,
+			emissive: 0x4f3006,
+			metalness: 1,
+            roughness: 0,
+			envMap: envMap,
+            envMapIntensity: 2
+        } );
 	
 		const objloader = new OBJLoader();
 		// const mtlLoader = new MTLLoader();
 		objloader.load(MODEL, obj => {
-			// obj.position.set(0, -1.5, 0);
-			// obj.rotation.set(0, -Math.PI, 0);
-			obj.position.set(0, -1.8, 0.4);
+			obj.position.set(0, -1.5, 0);
 			obj.rotation.set(0, -Math.PI, 0);
-			obj.scale.multiplyScalar(1.2);
-			let textureloader = new THREE.TextureLoader();
-			textureloader.load(BUTTERFLY,function(tx){
-				tx.offset.set(-0.3, 0.5);
-				tx.repeat.set(1.5, 1.5);
-				let stripeMaterial = new THREE.MeshPhongMaterial({
-					map: tx,
-					wireframe: false,
-					specular: 0xffffff,
-					shininess: 1000,
-				});
-				obj.children[0].material = stripeMaterial;
-			});
-			
-			obj.children[1].material = blueMaterial;
-			obj.children[2].material = blueMaterial;
-			obj.children[3].material = blueMaterial;
+			// obj.scale.multiplyScalar(1.2);
+
+			obj.children[0].material = bagMaterial;
+			obj.children[1].material = bagMaterial;
+			obj.children[2].material = bagMaterial;
+			obj.children[3].material = letterMaterial;
+
 			obj.matrixAutoUpdate = false;
 			obj.updateMatrix();
 			
@@ -111,4 +125,4 @@ class Mask extends Group {
 	}
 }
 
-export default Mask;
+export default Purse;

@@ -13,3 +13,4 @@ export * from './Chain';
 export * from './Mask';
 export * from './Sunglasses';
 export * from './Earrings';
+export * from './Purse';

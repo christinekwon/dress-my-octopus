@@ -47,7 +47,7 @@ class Bow extends Group {
 			obj.position.set(-0.3, -0.5, -0.3);
 			obj.rotation.set(0, -Math.PI, 0);
 
-			obj.children[0].material = material;
+			obj.children[0].material = redMaterial;
 			
 			obj.matrixAutoUpdate = false;
 			obj.updateMatrix();

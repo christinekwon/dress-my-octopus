@@ -84,14 +84,14 @@ class Bubble extends Group {
 	update(timeStamp) {
 		if (this.state.grow) {
 			this.state.count++;
-			this.sphere.scale.multiplyScalar(1.001);
+			this.sphere.scale.multiplyScalar(1.002);
 			if (this.state.count == 200) {
 				this.state.grow = 0;
 			}
 		}
 		else {
 			this.state.count--;
-			this.sphere.scale.multiplyScalar(0.999);
+			this.sphere.scale.multiplyScalar(0.998);
 			if (this.state.count == 0) {
 				this.state.grow = 1;
 			}

@@ -50,7 +50,7 @@ class Baby extends Group {
 				specular: 0xffffff,
 				shininess: 1000
 			});
-			x = 3;
+			x = 2;
 			y = -1;
 			z = -2;
 		}
@@ -78,7 +78,7 @@ class Baby extends Group {
 				specular: 0xffffff,
 				shininess: 1000
 			});
-			x = -3;
+			x = -2;
 			y = -1;
 			z = -2;
 		}

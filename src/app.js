@@ -43,6 +43,7 @@ var itemMap = {
     "MASK": 0,
     "SUNGLASSES": 0,
     "EARRINGS": 0,
+    "PURSE": 0,
 }
 
 // Initialize core ThreeJS components

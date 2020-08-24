@@ -32,7 +32,7 @@ class Lips extends Group {
 		});
 
 		var material = new THREE.MeshPhongMaterial({
-			color: 0x611d91,
+			color: 0x633ebc,
 			specular: 0xffffff,
 			shininess: 100
 		});
@@ -50,9 +50,9 @@ class Lips extends Group {
 			// obj.scale.multiplyScalar(0.5);
 
 			// med lips
-			obj.position.set(0, -1, -0.2);
+			obj.position.set(0, -0.9, -0.28);
 			obj.rotation.set(0, -Math.PI, 0);
-			obj.scale.multiplyScalar(0.75);
+			obj.scale.multiplyScalar(0.7);
 
 			obj.children[0].material = material;
 			// obj.children[1].material = redMaterial;
