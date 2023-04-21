@@ -1,11 +1,9 @@
-import * as Dat from 'dat.gui';
 import { Scene, Color } from 'three';
 import { Octopus, Heart, Bow, Necklace, Chain, Baby, Lash, Lips, Mask, Sunglasses, Earrings, Purse, Bubble } from 'objects';
 import { BasicLights } from 'lights';
 import * as THREE from "three";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
 
-// import { ResourceTracker } from "tracker";
 import POSX from "./textures/Skybox/posx.jpg";
 import NEGX from "./textures/Skybox/negx.jpg";
 import POSY from "./textures/Skybox/posy.jpg";
@@ -13,7 +11,6 @@ import NEGY from "./textures/Skybox/negy.jpg";
 import POSZ from "./textures/Skybox/posz.jpg";
 import NEGZ from "./textures/Skybox/negz.jpg";
 import WATER from "./textures/Water/bg-04.png";
-// import WHITE from "./textures/White/white.png";
 
 class SeedScene extends Scene {
     constructor() {
@@ -22,7 +19,6 @@ class SeedScene extends Scene {
 
         // Init state
         this.state = {
-            // gui: new Dat.GUI(), // Create GUI for scene
             rotationSpeed: 1,
             updateList: [],
             bob: true,
@@ -97,10 +93,6 @@ class SeedScene extends Scene {
             this.add(bubble);
         }
 
-        // this.add(this.objects.heart);
-        // console.log(this.objects.keys);
-
-        // Set background to a nice color
         this.background = envMap;
 
 
@@ -108,11 +100,6 @@ class SeedScene extends Scene {
         this.octopus = octopus;
         const lights = new BasicLights();
         this.add(octopus, lights);
-
-        // Populate GUI
-        // this.state.gui.add(this.state, 'bob');
-        // this.state.gui.add(this.state, 'spin');
-        // this.state.gui.add(this.state, 'rotationSpeed', -30, 30);
     }
 
     addToUpdateList(object) {
@@ -122,15 +109,11 @@ class SeedScene extends Scene {
 
     update(timeStamp) {
         const { rotationSpeed, updateList } = this.state;
-        // spins objects
-        // this.rotation.y = (rotationSpeed * timeStamp) / 10000;
 
         if (this.state.bob) {
             for (let obj of updateList) {
                 obj.state.bob = true;
             }
-            // Bob back antd forth
-            // this.rotation.z = 0.05 * Math.sin(timeStamp / 300);
         }
         else {
             for (let obj of updateList) {
@@ -155,27 +138,6 @@ class SeedScene extends Scene {
     }
 
     toggle(item) {
-        // let currentItems = this.children;
-        // let disposed = 0;
-        // for (let i = 0; i < currentItems.length; i++) {
-        //     if (currentItems[i].item == item) {
-        //         console.log("seedscene.js - disposed");
-        //         currentItems[i].dispose();
-        //         disposed = 1;
-        //         break;
-        //     }
-        // }
-        // if (!disposed) {
-        //     // if (item ==)
-        //     console.log("seedscene.js - added");
-        //     // const obj = new Heart(this);
-        //     // this.add(obj);
-
-        //     // console.log(obj.visible);
-        //     console.log(this.objects.heart.visible);
-        //     this.objects.heart.visible = true;
-        //     console.log(this.objects.heart.visible);
-        // }
         this.objects[item].visible = !this.objects[item].visible;
     }
 
@@ -213,9 +175,6 @@ class SeedScene extends Scene {
             this.objects[obj].visible = false;
         }
 
-        // while (this.children.length > 2) {
-        //     this.remove(this.children[0]);
-        // }
     }
 }
 

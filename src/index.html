@@ -3,10 +3,8 @@
 <head>
 	<meta charset="utf-8" />
 	<title><%= htmlWebpackPlugin.options.title %></title>
-
 	<link rel="stylesheet" href="https://use.typekit.net/mrx6nig.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
 </head>
@@ -23,22 +21,19 @@
 
     .collapsible-container {
         background-color: transparent;
-        /* border: 1px solid #555; */
         margin-bottom: 15px;
         width: 30vw;
     }
+
     /*header*/
     .collapsible {
         font-family: 'Roboto Mono', monospace;
         font-size: 16px;
         font-weight: 500;
-        /* background-color: white; */
         width: 150px;
         padding: 10px 15px 12px 15px;
         border: none;
         background-color: rgba(255, 255, 255, 0.2);
-        /* border:2px solid rgb(177, 122, 255); */
-        /* color: rgb(177, 122, 255); */
         color: rgb(255, 255, 255);
     }
 
@@ -50,7 +45,6 @@
     }
     .content {
         padding-top: 10px;
-        /* padding: 10px 20px 0px 20px; */
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.2s ease-out;
@@ -68,11 +62,8 @@
         padding: 10px 15px;
         margin: 10px auto;
         border: none;
-        /* width: 100px; */
-        /* border-radius: 10px; */
     }
     .choice:hover {
-        /* background-color:rgb(118, 240, 232); */
         background-color:rgba(255, 255, 255, 0.2);
     }
 
@@ -82,12 +73,8 @@
         padding: 10px 15px 12px 15px;
         margin-bottom: 25px;
         background-color: rgba(255, 255, 255, 0.2);
-        /* border:2px solid rgb(0, 210, 189); */
         border: none;
-        /* color:rgb(255, 81, 113); */
-
         color:rgb(255, 255, 255);
-
         font-size: 16px;
         font-weight: 500;
     }
@@ -143,14 +130,9 @@
 
 <body>
     <div class="loader-wrapper">
-        <!-- <span class="loader"><span class="loader-inner"></span></span> -->
         <div class="loader"><span class="loader-inner">loading...</span></div>
     </div>
     <div class="main-container">
-        <!-- <div class="test" id="test1">1</div>
-        <div class="test" id="test2">2</div>
-        <div class="test" id="test3">3</div>
-        <div class="test" id="test4">4</div> -->
         <div class="collapsible-container">
             <button class="collapsible">&#8280; menu &#8280;</button>
             <div class="content">
@@ -172,23 +154,6 @@
 
             </div>
         </div>
-        <!-- <div class="collapsible-container">
-            <button class="collapsible">face</button>
-            <div class="content">
-                <button class="face choice" id="lash" value="LASH">lashes</button>
-                <button class="face choice" id="stache" value="STACHE">stache</button>
-                <button class="face choice" id="lip" value="LIP">lips</button>
-                <button class="face choice" id="mole" value="MOLE">mole</button>
-            </div>
-        </div>
-        <div class="collapsible-container">
-            <button class="collapsible">accessories</button>
-            <div class="content">
-                <button class="acc choice" id="necklace" value="NECKLACE">necklace</button>
-                <button class="acc choice" id="bracelet" value="BRACELET">bracelet</button>
-                <button class="acc choice" id="glasses" value="GLASSES">glasses</button>
-            </div>
-        </div> -->
         <button class="butt" id="spin">&#8280; spin &#8280;</button>
         <br>
         <button class="butt" id="reset">&#8280; reset &#8280;</button>

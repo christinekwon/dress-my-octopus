@@ -1,5 +1,4 @@
 import { Group, Scene, RedFormat } from "three";
-// import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import MODEL from "./baby.obj";
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
@@ -29,12 +28,10 @@ class Baby extends Group {
 		if (id == 0) {
 			material1 = new THREE.MeshPhongMaterial({
 				color: 0x79dd69,
-				// color: 0x7da1sd8,
 				specular: 0xffffff,
 				shininess: 1000
 			});
 			material2 = new THREE.MeshPhongMaterial({
-				// color: 0xff90b3,
 				color: 0xf397d6,
 				specular: 0xffffff,
 				shininess: 1000
@@ -45,7 +42,6 @@ class Baby extends Group {
 				shininess: 1000
 			});
 			material4 = new THREE.MeshPhongMaterial({
-				// color: 0xb8336a,
 				color: 0xff58ab,
 				specular: 0xffffff,
 				shininess: 1000
@@ -84,22 +80,10 @@ class Baby extends Group {
 		}
 
 		const objloader = new OBJLoader();
-		// const mtlLoader = new MTLLoader();
 		objloader.load(MODEL, obj => {
 			obj.position.set(x, y, z);
 			obj.scale.multiplyScalar(0.3);
 			obj.rotation.set(0, -Math.PI, 0);
-
-		// 	let textureloader = new THREE.TextureLoader();
-		// 	textureloader.load(STRIPES,function(tx){
-		// 	 let stripeMaterial = new THREE.MeshPhongMaterial({
-		// 		 map: tx,
-		// 		wireframe: false,
-		// 		specular: 0xffffff,
-		// 		shininess: 1000
-		// 	 });
-		// 	 obj.children[0].material = stripeMaterial;
-		//  });
 
 			obj.children[0].material = material1;
 			obj.children[1].material = material2;
@@ -116,27 +100,11 @@ class Baby extends Group {
 
 		});
 
-		// this.addItem(this);
 		parent.addToUpdateList(this);
 		this.visible = false;
 	}
 
-	// addItem(self) {
-	// 	const mtlLoader = new MTLLoader();
-	// 	mtlLoader.load(HEART_MAT, function ( materials ) {
-	// 		var objLoader = new OBJLoader();
-	// 		objLoader.setMaterials( materials );//Set the materials for the objects using OBJLoader's setMaterials method
-	// 		objLoader.load( HEART_OBJ, object => {
-	// 			object.scale.multiplyScalar(self.size); 
-	// 			object.position.set( self.pos[0], self.pos[1], self.pos[2] ); 
-	// 			object.rotation.set( 0, -Math.PI, 0 ); 
-	// 			self.add( object );
-	// 		});
-	// 	});
-	// }
-
 	dispose() {
-		// console.log("Head.js - disposed");
         this.parent.remove(this);
         this.tracker.dispose();
     }

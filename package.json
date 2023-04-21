@@ -1,14 +1,11 @@
 {
-  "name": "dress-an-octopus",
+  "name": "dress-my-octopus",
   "repository": "dress-my-octopus",
   "version": "0.1.0",
-  "title": "dress an octopus",
+  "title": "dress my octopus",
   "description": "description",
   "keywords": [
-    "keyword1",
-    "keyword2",
-    "...",
-    "this last entry CANNOT have a comma after it ->"
+    "game"
   ],
   "scripts": {
     "start": "webpack-dev-server --mode development --output-public-path \"\"",
